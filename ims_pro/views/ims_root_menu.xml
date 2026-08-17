@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ims_root" name="IMS Pro" action="action_ims_dashboard_client" sequence="10" groups="ims_pro.group_ims_user"/>
+<menuitem id="menu_ims_my" name="My IMS" parent="menu_ims_root" sequence="5"/>
+    <menuitem id="menu_ims_documents" name="Documents" parent="menu_ims_root" sequence="10"/>
+    <menuitem id="menu_ims_risk_root" name="Risk &amp; Opportunities" parent="menu_ims_root" sequence="20"/>
+    <menuitem id="menu_ims_improvement" name="Improvement" parent="menu_ims_root" sequence="30"/>
+    <menuitem id="menu_ims_audit_root" name="Audits" parent="menu_ims_root" sequence="40"/>
+    <menuitem id="menu_ims_review_root" name="Management Review" parent="menu_ims_root" sequence="50"/>
+    <menuitem id="menu_ims_compliance_root" name="Compliance" parent="menu_ims_root" sequence="60"/>
+    <menuitem id="menu_ims_management" name="IMS Management" parent="menu_ims_root" sequence="80"/>
+    <menuitem id="menu_ims_configuration" name="Configuration" parent="menu_ims_root" sequence="100" groups="ims_pro.group_ims_admin"/>
+</odoo>

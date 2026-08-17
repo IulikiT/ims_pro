@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ims_pro.IMSProDashboard">
+        <div class="o_action ims_pro_dashboard">
+            <div class="ims_hero">
+                <div>
+                    <div class="ims_eyebrow">INTEGRATED MANAGEMENT SYSTEM</div>
+                    <h1>IMS Pro</h1>
+                    <p>One workspace for controlled documents, QHSE risks, improvement, assurance and management review.</p>
+                </div>
+                <div class="ims_hero_actions">
+                    <button class="btn btn-light" t-on-click="openSearch">
+                        <i class="fa fa-search me-2"/>Search IMS
+                    </button>
+                    <button class="btn btn-outline-light" t-on-click="openMyActions">
+                        <i class="fa fa-check-square-o me-2"/>My IMS Actions
+                    </button>
+                </div>
+            </div>
+
+            <div t-if="state.loading" class="p-5 text-center">
+                <i class="fa fa-spinner fa-spin fa-2x"/>
+            </div>
+
+            <t t-else="">
+                <div class="ims_content">
+                    <div class="ims_kpi_grid">
+                        <div class="ims_kpi ims_kpi_blue" t-on-click="() => openAction('ims_pro.action_ims_document_library')">
+                            <div class="ims_kpi_icon"><i class="fa fa-book"/></div>
+                            <div><span>Active Documents</span><strong t-esc="state.data.kpis.active_documents || 0"/></div>
+                        </div>
+                        <div class="ims_kpi ims_kpi_amber">
+                            <div class="ims_kpi_icon"><i class="fa fa-clock-o"/></div>
+                            <div><span>My Approvals</span><strong t-esc="state.data.kpis.pending_approvals || 0"/></div>
+                        </div>
+                        <div class="ims_kpi ims_kpi_red" t-on-click="openMyActions">
+                            <div class="ims_kpi_icon"><i class="fa fa-calendar-times-o"/></div>
+                            <div><span>Overdue Actions</span><strong t-esc="state.data.kpis.overdue_actions || 0"/></div>
+                        </div>
+                        <div class="ims_kpi ims_kpi_red" t-on-click="() => openAction('ims_pro.action_ims_risk_case')">
+                            <div class="ims_kpi_icon"><i class="fa fa-exclamation-triangle"/></div>
+                            <div><span>High / Critical Risks</span><strong t-esc="state.data.kpis.high_risks || 0"/></div>
+                        </div>
+                        <div class="ims_kpi ims_kpi_teal" t-on-click="() => openAction('ims_pro.action_ims_capa')">
+                            <div class="ims_kpi_icon"><i class="fa fa-refresh"/></div>
+                            <div><span>Open CAPA</span><strong t-esc="state.data.kpis.open_capa || 0"/></div>
+                        </div>
+                        <div class="ims_kpi ims_kpi_violet" t-on-click="() => openAction('ims_pro.action_ims_audit_finding')">
+                            <div class="ims_kpi_icon"><i class="fa fa-search"/></div>
+                            <div><span>Open Audit Findings</span><strong t-esc="state.data.kpis.open_findings || 0"/></div>
+                        </div>
+                    </div>
+
+                    <section class="ims_section">
+                        <div class="ims_section_header">
+                            <div>
+                                <h2>IMS Workspace</h2>
+                                <p>Operational modules follow the same traceability logic across the integrated system.</p>
+                            </div>
+                        </div>
+                        <div class="ims_module_grid">
+                            <t t-foreach="modules" t-as="mod" t-key="mod.key">
+                                <button class="ims_module_card" t-on-click="() => openAction(mod.action)">
+                                    <div class="ims_module_icon"><i t-attf-class="fa #{mod.icon}"/></div>
+                                    <div class="ims_module_body">
+                                        <div class="ims_module_group" t-esc="mod.group"/>
+                                        <h3 t-esc="mod.title"/>
+                                        <p t-esc="mod.subtitle"/>
+                                    </div>
+                                    <i class="fa fa-angle-right ims_module_arrow"/>
+                                </button>
+                            </t>
+                        </div>
+                    </section>
+
+                    <div class="ims_two_col">
+                        <section class="ims_panel">
+                            <div class="ims_panel_header">
+                                <div>
+                                    <h2>Residual Risk Heatmap</h2>
+                                    <p>Open risks after implemented controls</p>
+                                </div>
+                                <button class="btn btn-sm btn-outline-primary" t-on-click="() => openAction('ims_pro.action_ims_risk_case')">Open register</button>
+                            </div>
+                            <div class="ims_heatmap_wrap">
+                                <div class="ims_heat_y">Probability</div>
+                                <div class="ims_heatmap">
+                                    <t t-foreach="[5,4,3,2,1]" t-as="p" t-key="p">
+                                        <div class="ims_heat_row">
+                                            <span class="ims_axis" t-esc="p"/>
+                                            <t t-foreach="[1,2,3,4,5]" t-as="s" t-key="s">
+                                                <div t-attf-class="ims_heat_cell #{getHeatClass(p,s)}">
+                                                    <strong t-esc="getHeatCount(p,s)"/>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </t>
+                                    <div class="ims_heat_footer">
+                                        <span/>
+                                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                                    </div>
+                                    <div class="ims_heat_x">Severity</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="ims_panel">
+                            <div class="ims_panel_header">
+                                <div>
+                                    <h2>My Work</h2>
+                                    <p><strong t-esc="state.data.kpis.my_open || 0"/> open · <strong t-esc="state.data.kpis.my_overdue || 0"/> overdue</p>
+                                </div>
+                                <button class="btn btn-sm btn-outline-primary" t-on-click="openMyActions">View all</button>
+                            </div>
+                            <div class="ims_work_list">
+                                <t t-if="!state.data.recent_actions.length">
+                                    <div class="ims_empty">No IMS actions assigned.</div>
+                                </t>
+                                <t t-foreach="state.data.recent_actions" t-as="a" t-key="a.id">
+                                    <div t-attf-class="ims_work_item #{a.is_overdue ? 'is-overdue' : ''}">
+                                        <div>
+                                            <strong t-esc="a.reference"/>
+                                            <span class="ims_source" t-esc="a.source_type"/>
+                                            <p t-esc="a.name"/>
+                                        </div>
+                                        <div class="ims_due">
+                                            <span t-esc="a.due_date || 'No due date'"/>
+                                            <b t-if="a.is_overdue">OVERDUE</b>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="ims_two_col ims_bottom_panels">
+                        <section class="ims_panel ims_small_panel">
+                            <h3>Next IMS Audit</h3>
+                            <t t-if="state.data.next_audit.title">
+                                <strong t-esc="state.data.next_audit.title"/>
+                                <p><span t-esc="state.data.next_audit.name"/> · <span t-esc="state.data.next_audit.date || 'Date not set'"/></p>
+                            </t>
+                            <t t-else=""><p>No open audit scheduled.</p></t>
+                        </section>
+                        <section class="ims_panel ims_small_panel">
+                            <h3>Next Management Review</h3>
+                            <t t-if="state.data.next_review.title">
+                                <strong t-esc="state.data.next_review.title"/>
+                                <p><span t-esc="state.data.next_review.name"/> · <span t-esc="state.data.next_review.date || 'Date not set'"/></p>
+                            </t>
+                            <t t-else=""><p>No open management review scheduled.</p></t>
+                        </section>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+</templates>

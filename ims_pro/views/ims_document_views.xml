@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ims_document_search" model="ir.ui.view">
+        <field name="name">ims.document.search</field>
+        <field name="model">ims.document</field>
+        <field name="arch" type="xml">
+            <search string="Search Controlled Documents">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="folder_id"/>
+                <field name="process_id"/>
+                <field name="owner_id"/>
+                <field name="standard_clause_ids"/>
+                <filter name="active_released" string="Released" domain="[('current_revision_id','!=',False)]"/>
+                <filter name="change_control" string="Change Control Required" domain="[('change_control_required','=',True)]"/>
+                <separator/>
+                <filter name="group_folder" string="Folder" context="{'group_by':'folder_id'}"/>
+                <filter name="group_process" string="Process" context="{'group_by':'process_id'}"/>
+                <filter name="group_owner" string="Owner" context="{'group_by':'owner_id'}"/>
+                <filter name="group_category" string="Category" context="{'group_by':'category_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_ims_document_list" model="ir.ui.view">
+        <field name="name">ims.document.list</field>
+        <field name="model">ims.document</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="folder_id"/>
+                <field name="process_id"/>
+                <field name="owner_id"/>
+                <field name="current_revision_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ims_document_form" model="ir.ui.view">
+        <field name="name">ims.document.form</field>
+        <field name="model">ims.document</field>
+        <field name="arch" type="xml">
+            <form string="Controlled Document">
+                <header>
+                    <button name="action_new_revision" type="object" string="New Revision" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="category_id"/>
+                            <field name="folder_id"/>
+                            <field name="process_id"/>
+                        </group>
+                        <group>
+                            <field name="owner_id"/>
+                            <field name="issued_by_department_id"/>
+                            <field name="confidentiality"/>
+                            <field name="change_control_required"/>
+                            <field name="review_interval_months"/>
+                            <field name="current_revision_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Revisions">
+                            <field name="revision_ids">
+                                <list create="0">
+                                    <field name="revision"/>
+                                    <field name="state"/>
+                                    <field name="effective_date"/>
+                                    <field name="review_date"/>
+                                    <field name="is_review_overdue"/>
+                                    <field name="approval_count"/>
+                                    <field name="required_approvals"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Standards &amp; Clauses">
+                            <field name="standard_clause_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="Associations">
+                            <field name="related_document_ids" widget="many2many_tags"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ims_document_revision_form" model="ir.ui.view">
+        <field name="name">ims.document.revision.form</field>
+        <field name="model">ims.document.revision</field>
+        <field name="arch" type="xml">
+            <form string="Document Revision">
+                <header>
+                    <button name="action_request_review" type="object" string="Send to Review"
+                            invisible="state != 'draft'"/>
+                    <button name="action_request_approval" type="object" string="Request Approval"
+                            invisible="state not in ('review','draft')"/>
+                    <button name="action_mark_approved" type="object" string="Mark Approved"
+                            invisible="state != 'approval'"/>
+                    <button name="action_release" type="object" string="Release Revision"
+                            class="btn-primary" invisible="state != 'approved'"/>
+                    <button name="action_print_controlled_pdf" type="object" string="Controlled PDF"
+                            invisible="state not in ('approved','active','superseded','archived')"/>
+                    <button name="action_archive" type="object" string="Archive"
+                            invisible="state not in ('active','superseded')"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="document_id"/>
+                            <field name="revision"/>
+                            <field name="internal_revision"/>
+                            <field name="effective_date"/>
+                            <field name="review_date"/>
+                            <field name="is_review_overdue"/>
+                        </group>
+                        <group>
+                            <field name="required_approvals"/>
+                            <field name="approval_mode"/>
+                            <field name="approval_count"/>
+                            <field name="source_attachment_id"/>
+                            <field name="released_pdf_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Internal Editor">
+                            <field name="body_html" widget="html"/>
+                        </page>
+                        <page string="Approvals">
+                            <field name="approval_ids">
+                                <list editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="approver_id"/>
+                                    <field name="request_date"/>
+                                    <field name="due_date"/>
+                                    <field name="state"/>
+                                    <field name="is_overdue"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Release Notes &amp; Changes">
+                            <field name="change_summary"/>
+                            <field name="release_notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ims_document_category_list" model="ir.ui.view">
+        <field name="name">ims.document.category.list</field>
+        <field name="model">ims.document.category</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence"/><field name="name"/><field name="code_prefix"/>
+                <field name="revision_scheme"/><field name="default_review_months"/>
+                <field name="change_control_required"/><field name="template_id"/><field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_ims_document_template_list" model="ir.ui.view">
+        <field name="name">ims.document.template.list</field>
+        <field name="model">ims.document.template</field>
+        <field name="arch" type="xml">
+            <list><field name="name"/><field name="active"/></list>
+        </field>
+    </record>
+
+    <record id="view_ims_document_template_form" model="ir.ui.view">
+        <field name="name">ims.document.template.form</field>
+        <field name="model">ims.document.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                    <notebook>
+                        <page string="Header"><field name="header_html" widget="html"/></page>
+                        <page string="First Page Header"><field name="first_page_header_html" widget="html"/></page>
+                        <page string="Footer"><field name="footer_html" widget="html"/></page>
+                        <page string="Options">
+                            <group>
+                                <field name="show_document_code"/>
+                                <field name="show_revision"/>
+                                <field name="show_effective_date"/>
+                                <field name="show_page_number"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ims_document" model="ir.actions.act_window">
+        <field name="name">Document Control</field>
+        <field name="res_model">ims.document</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_ims_document_search"/>
+    </record>
+    <record id="action_ims_document_library" model="ir.actions.act_window">
+        <field name="name">Document Library</field>
+        <field name="res_model">ims.document</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('current_revision_id','!=',False)]</field>
+        <field name="search_view_id" ref="view_ims_document_search"/>
+    </record>
+    <record id="action_ims_document_category" model="ir.actions.act_window">
+        <field name="name">Document Categories</field>
+        <field name="res_model">ims.document.category</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <record id="action_ims_document_template" model="ir.actions.act_window">
+        <field name="name">Header/Footer Templates</field>
+        <field name="res_model">ims.document.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_ims_document_library" name="Document Library"
+              parent="menu_ims_documents" action="action_ims_document_library" sequence="10"/>
+    <menuitem id="menu_ims_document_control" name="Document Control"
+              parent="menu_ims_documents" action="action_ims_document" sequence="20"/>
+    <menuitem id="menu_ims_document_category" name="Document Categories"
+              parent="menu_ims_configuration" action="action_ims_document_category" sequence="20"/>
+    <menuitem id="menu_ims_document_template" name="Header/Footer Templates"
+              parent="menu_ims_configuration" action="action_ims_document_template" sequence="30"/>
+</odoo>

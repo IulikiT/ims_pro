@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ims_objective_search" model="ir.ui.view">
+      <field name="name">ims.objective.search</field><field name="model">ims.objective</field>
+      <field name="arch" type="xml"><search><field name="name"/><field name="title"/><field name="domain"/><field name="state"/><filter string="By Domain" name="g_domain" context="{'group_by':'domain'}"/></search></field>
+    </record>
+    <record id="view_ims_objective_list" model="ir.ui.view">
+      <field name="name">ims.objective.list</field><field name="model">ims.objective</field>
+      <field name="arch" type="xml"><list><field name="name"/><field name="title"/><field name="domain"/><field name="process_id"/><field name="owner_id"/><field name="target"/><field name="actual_value"/><field name="progress"/><field name="due_date"/><field name="state"/></list></field>
+    </record>
+    <record id="view_ims_objective_form" model="ir.ui.view">
+      <field name="name">ims.objective.form</field><field name="model">ims.objective</field>
+      <field name="arch" type="xml"><form><sheet><group><field name="name"/><field name="title"/><field name="domain"/><field name="process_id"/><field name="owner_id"/><field name="target"/><field name="actual_value"/><field name="progress"/><field name="due_date"/><field name="state"/></group><notebook><page string="Planning"><field name="baseline"/><field name="measurement_unit"/><field name="resources"/><field name="methods"/></page><page string="Evaluation"><field name="evaluation"/></page><page string="IMS Actions"><field name="action_ids"/></page></notebook></sheet><chatter/></form></field>
+    </record>
+    <record id="action_ims_objective" model="ir.actions.act_window">
+      <field name="name">IMS Objectives</field><field name="res_model">ims.objective</field><field name="view_mode">list,form</field>
+      <field name="search_view_id" ref="view_ims_objective_search"/>
+    </record>
+    <menuitem id="menu_ims_objective" name="Objectives &amp; KPI" parent="menu_ims_review_root" action="action_ims_objective" sequence="20"/>
+</odoo>

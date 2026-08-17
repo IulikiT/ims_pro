@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ims_standard_list" model="ir.ui.view">
+        <field name="name">ims.standard.list</field><field name="model">ims.standard</field>
+        <field name="arch" type="xml"><list><field name="name"/><field name="version"/><field name="domain"/><field name="active"/></list></field>
+    </record>
+    <record id="view_ims_standard_form" model="ir.ui.view">
+        <field name="name">ims.standard.form</field><field name="model">ims.standard</field>
+        <field name="arch" type="xml">
+            <form><sheet><group><field name="name"/><field name="version"/><field name="domain"/><field name="active"/></group>
+            <notebook><page string="Clauses"><field name="clause_ids"><list editable="bottom"><field name="code"/><field name="name"/><field name="parent_id"/></list></field></page></notebook>
+            </sheet></form>
+        </field>
+    </record>
+    <record id="action_ims_standard" model="ir.actions.act_window">
+        <field name="name">Standards</field><field name="res_model">ims.standard</field><field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="menu_ims_standard" name="Standards &amp; Clauses" parent="menu_ims_configuration" action="action_ims_standard" sequence="10"/>
+</odoo>

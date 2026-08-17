@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ims_complaint_search" model="ir.ui.view">
+      <field name="name">ims.complaint.search</field><field name="model">ims.complaint</field>
+      <field name="arch" type="xml"><search><field name="name"/><field name="title"/><field name="customer_id"/><field name="state"/><filter string="Open" name="open" domain="[('state','!=','closed')]"/></search></field>
+    </record>
+    <record id="view_ims_complaint_list" model="ir.ui.view">
+      <field name="name">ims.complaint.list</field><field name="model">ims.complaint</field>
+      <field name="arch" type="xml"><list><field name="name"/><field name="title"/><field name="customer_id"/><field name="category"/><field name="severity"/><field name="received_date"/><field name="due_date"/><field name="assigned_to_id"/><field name="state"/></list></field>
+    </record>
+    <record id="view_ims_complaint_form" model="ir.ui.view">
+      <field name="name">ims.complaint.form</field><field name="model">ims.complaint</field>
+      <field name="arch" type="xml"><form><sheet><group><field name="name"/><field name="title"/><field name="customer_id"/><field name="category"/><field name="severity"/><field name="received_date"/><field name="due_date"/><field name="assigned_to_id"/><field name="state"/></group><notebook><page string="Complaint"><field name="description"/><field name="reference"/></page><page string="Investigation &amp; Response"><field name="investigation"/><field name="customer_response"/><field name="decision"/></page><page string="Timeline"><field name="history_ids"><list editable="bottom"><field name="event_datetime"/><field name="user_id"/><field name="event_type"/></list></field></page><page string="Relations"><field name="nonconformity_ids"/><field name="capa_ids" widget="many2many_tags"/><field name="risk_case_ids" widget="many2many_tags"/></page></notebook></sheet><chatter/></form></field>
+    </record>
+    <record id="action_ims_complaint" model="ir.actions.act_window">
+      <field name="name">Customer Complaints</field><field name="res_model">ims.complaint</field><field name="view_mode">list,form</field>
+      <field name="search_view_id" ref="view_ims_complaint_search"/>
+    </record>
+    <menuitem id="menu_ims_complaint" name="Customer Complaints" parent="menu_ims_improvement" action="action_ims_complaint" sequence="20"/>
+</odoo>

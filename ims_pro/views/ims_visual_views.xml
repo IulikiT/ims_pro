@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- DOCUMENT LIBRARY: Active released records, visual cards -->
+    <record id="view_ims_document_library_kanban" model="ir.ui.view">
+        <field name="name">ims.document.library.kanban</field>
+        <field name="model">ims.document</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="folder_id"/>
+                <field name="process_id"/>
+                <field name="owner_id"/>
+                <field name="current_revision_label"/>
+                <field name="current_revision_state"/>
+                <field name="current_effective_date"/>
+                <field name="current_review_date"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="ims_kanban_card">
+                            <div class="ims_card_header">
+                                <span class="ims_card_code"><field name="code"/></span>
+                                <span class="ims_badge ims_badge_active">ACTIVE · REV <field name="current_revision_label"/></span>
+                            </div>
+                            <div class="ims_card_title"><field name="name"/></div>
+                            <div class="ims_card_meta">
+                                <span><i class="fa fa-folder-o me-1"/><field name="folder_id"/></span>
+                                <span t-if="record.process_id.raw_value"><i class="fa fa-sitemap me-1"/><field name="process_id"/></span>
+                            </div>
+                            <div class="ims_card_meta mt-2">
+                                <span><i class="fa fa-calendar-check-o me-1"/>Effective <field name="current_effective_date"/></span>
+                                <span><i class="fa fa-refresh me-1"/>Review <field name="current_review_date"/></span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- DOCUMENT CONTROL: all docs -->
+    <record id="view_ims_document_control_kanban" model="ir.ui.view">
+        <field name="name">ims.document.control.kanban</field>
+        <field name="model">ims.document</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="code"/><field name="name"/><field name="folder_id"/>
+                <field name="owner_id"/><field name="current_revision_label"/>
+                <field name="current_revision_state"/><field name="change_control_required"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="ims_kanban_card">
+                            <div class="ims_card_header">
+                                <span class="ims_card_code"><field name="code"/></span>
+                                <t t-if="record.current_revision_state.raw_value === 'active'">
+                                    <span class="ims_badge ims_badge_active">ACTIVE</span>
+                                </t>
+                                <t t-else="">
+                                    <span class="ims_badge ims_badge_draft">CONTROLLED</span>
+                                </t>
+                            </div>
+                            <div class="ims_card_title"><field name="name"/></div>
+                            <div class="ims_card_meta">
+                                <span><i class="fa fa-folder-o me-1"/><field name="folder_id"/></span>
+                                <span><i class="fa fa-user-o me-1"/><field name="owner_id"/></span>
+                            </div>
+                            <div class="ims_card_meta mt-2">
+                                <span>Rev <field name="current_revision_label"/></span>
+                                <span t-if="record.change_control_required.raw_value"><i class="fa fa-lock me-1"/>Change Control</span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- RISK CASES -->
+    <record id="view_ims_risk_case_kanban_visual" model="ir.ui.view">
+        <field name="name">ims.risk.case.kanban.visual</field>
+        <field name="model">ims.risk.case</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/><field name="title"/><field name="project_id"/>
+                <field name="initial_level"/><field name="residual_level"/>
+                <field name="responsible_id"/><field name="due_date"/><field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="ims_kanban_card">
+                            <div class="ims_card_header">
+                                <span class="ims_card_code"><field name="name"/></span>
+                                <t t-if="record.residual_level.raw_value === 'CRITICAL'"><span class="ims_badge ims_badge_critical">CRITICAL</span></t>
+                                <t t-elif="record.residual_level.raw_value === 'HIGH'"><span class="ims_badge ims_badge_high">HIGH</span></t>
+                                <t t-elif="record.residual_level.raw_value === 'MEDIUM'"><span class="ims_badge ims_badge_medium">MEDIUM</span></t>
+                                <t t-else=""><span class="ims_badge ims_badge_low"><t t-esc="record.residual_level.value || 'LOW'"/></span></t>
+                            </div>
+                            <div class="ims_card_title"><field name="title"/></div>
+                            <div class="ims_card_meta"><span><i class="fa fa-folder-open-o me-1"/><field name="project_id"/></span></div>
+                            <div class="ims_card_meta mt-2">
+                                <span>Initial: <strong><field name="initial_level"/></strong></span>
+                                <span>Residual: <strong><field name="residual_level"/></strong></span>
+                            </div>
+                            <div class="ims_card_meta mt-2">
+                                <span><i class="fa fa-user-o me-1"/><field name="responsible_id"/></span>
+                                <span><i class="fa fa-calendar-o me-1"/><field name="due_date"/></span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- UNIVERSAL NC/INCIDENTS -->
+    <record id="view_ims_nc_kanban_visual" model="ir.ui.view">
+        <field name="name">ims.nonconformity.kanban.visual</field>
+        <field name="model">ims.nonconformity</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/><field name="title"/><field name="domain"/>
+                <field name="nc_type"/><field name="severity"/><field name="assigned_to_id"/>
+                <field name="due_date"/><field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="ims_kanban_card">
+                            <div class="ims_card_header">
+                                <span class="ims_card_code"><field name="name"/></span>
+                                <t t-if="record.severity.raw_value === 'critical'"><span class="ims_badge ims_badge_critical">CRITICAL</span></t>
+                                <t t-elif="record.severity.raw_value === 'major'"><span class="ims_badge ims_badge_high">MAJOR</span></t>
+                                <t t-else=""><span class="ims_badge ims_badge_medium">MINOR</span></t>
+                            </div>
+                            <div class="ims_card_title"><field name="title"/></div>
+                            <div class="ims_card_meta">
+                                <span><i class="fa fa-tag me-1"/><field name="domain"/></span>
+                                <span><field name="nc_type"/></span>
+                            </div>
+                            <div class="ims_card_meta mt-2">
+                                <span><i class="fa fa-user-o me-1"/><field name="assigned_to_id"/></span>
+                                <span><i class="fa fa-calendar-o me-1"/><field name="due_date"/></span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- CAPA -->
+    <record id="view_ims_capa_kanban_visual" model="ir.ui.view">
+        <field name="name">ims.capa.kanban.visual</field>
+        <field name="model">ims.capa</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/><field name="title"/><field name="domain"/>
+                <field name="process_id"/><field name="assigned_to_id"/>
+                <field name="due_date"/><field name="state"/><field name="effectiveness_result"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="ims_kanban_card">
+                            <div class="ims_card_header">
+                                <span class="ims_card_code"><field name="name"/></span>
+                                <span class="ims_badge ims_badge_medium"><field name="state"/></span>
+                            </div>
+                            <div class="ims_card_title"><field name="title"/></div>
+                            <div class="ims_card_meta">
+                                <span><i class="fa fa-sitemap me-1"/><field name="process_id"/></span>
+                                <span><i class="fa fa-tag me-1"/><field name="domain"/></span>
+                            </div>
+                            <div class="ims_card_meta mt-2">
+                                <span><i class="fa fa-user-o me-1"/><field name="assigned_to_id"/></span>
+                                <span><i class="fa fa-calendar-o me-1"/><field name="due_date"/></span>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- AUDIT -->
+    <record id="view_ims_audit_kanban_visual" model="ir.ui.view">
+        <field name="name">ims.audit.kanban.visual</field>
+        <field name="model">ims.audit</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/><field name="title"/><field name="audit_type"/>
+                <field name="planned_date"/><field name="lead_auditor_id"/><field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="ims_kanban_card">
+                            <div class="ims_card_header">
+                                <span class="ims_card_code"><field name="name"/></span>
+                                <span class="ims_badge ims_badge_active"><field name="state"/></span>
+                            </div>
+                            <div class="ims_card_title"><field name="title"/></div>
+                            <div class="ims_card_meta">
+                                <span><field name="audit_type"/></span>
+                                <span><i class="fa fa-calendar-o me-1"/><field name="planned_date"/></span>
+                            </div>
+                            <div class="ims_card_meta mt-2"><span><i class="fa fa-user-o me-1"/><field name="lead_auditor_id"/></span></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- MANAGEMENT REVIEW -->
+    <record id="view_ims_review_kanban_visual" model="ir.ui.view">
+        <field name="name">ims.review.kanban.visual</field>
+        <field name="model">ims.review</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/><field name="title"/><field name="review_type"/>
+                <field name="review_date"/><field name="coordinator_id"/><field name="state"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="ims_kanban_card">
+                            <div class="ims_card_header">
+                                <span class="ims_card_code"><field name="name"/></span>
+                                <span class="ims_badge ims_badge_active"><field name="state"/></span>
+                            </div>
+                            <div class="ims_card_title"><field name="title"/></div>
+                            <div class="ims_card_meta">
+                                <span><field name="review_type"/></span>
+                                <span><i class="fa fa-calendar-o me-1"/><field name="review_date"/></span>
+                            </div>
+                            <div class="ims_card_meta mt-2"><span><i class="fa fa-user-o me-1"/><field name="coordinator_id"/></span></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Make main actions start in Kanban -->
+    <record id="action_ims_document" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+    <record id="action_ims_document_library" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+    <record id="action_ims_risk_case" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+    <record id="action_ims_nonconformity" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+    <record id="action_ims_capa" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+    <record id="action_ims_audit" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+    <record id="action_ims_review" model="ir.actions.act_window">
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+</odoo>

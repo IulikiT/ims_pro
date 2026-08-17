@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="view_ims_change_search" model="ir.ui.view"><field name="name">ims.change.search</field><field name="model">ims.change</field>
+    <field name="arch" type="xml"><search><field name="name"/><field name="title"/><field name="process_id"/><field name="owner_id"/>
+    <filter string="Open" name="open" domain="[('state','not in',('closed','rejected','cancelled'))]"/>
+    <filter string="By Status" name="g_state" context="{'group_by':'state'}"/><filter string="By Process" name="g_process" context="{'group_by':'process_id'}"/></search></field></record>
+  <record id="view_ims_change_list" model="ir.ui.view"><field name="name">ims.change.list</field><field name="model">ims.change</field>
+    <field name="arch" type="xml"><list><field name="name"/><field name="title"/><field name="process_id"/><field name="owner_id"/><field name="due_date"/><field name="priority"/><field name="state"/></list></field></record>
+  <record id="view_ims_change_form" model="ir.ui.view"><field name="name">ims.change.form</field><field name="model">ims.change</field>
+    <field name="arch" type="xml"><form string="Change Notice"><header>
+      <button name="action_start_impact" type="object" string="Impact Assessment" invisible="state!='draft'"/>
+      <button name="action_submit" type="object" string="Submit" invisible="state!='impact'"/>
+      <button name="action_approve" type="object" string="Approve" invisible="state!='submitted'" class="btn-primary"/>
+      <button name="action_start_implementation" type="object" string="Start Implementation" invisible="state!='approved'"/>
+      <button name="action_start_verification" type="object" string="Verify" invisible="state!='implementation'"/>
+      <button name="action_ready_close" type="object" string="Ready to Close" invisible="state!='verification'"/>
+      <button name="action_close" type="object" string="Close" invisible="state!='ready'" class="btn-primary"/>
+      <field name="state" widget="statusbar"/></header><sheet>
+      <group><group><field name="name"/><field name="title"/><field name="process_id"/><field name="requested_by_id"/><field name="owner_id"/></group>
+      <group><field name="request_date"/><field name="due_date"/><field name="effective_date"/><field name="priority"/></group></group>
+      <notebook>
+        <page string="General"><field name="description"/><field name="justification"/></page>
+        <page string="Impact Assessment"><field name="impact_ids"><list editable="bottom"><field name="category"/><field name="affected"/><field name="action_required"/><field name="completed"/></list></field></page>
+        <page string="Documents"><field name="document_line_ids"><list editable="bottom"><field name="document_id"/><field name="current_revision_id"/><field name="new_revision_id"/><field name="release_on_close"/></list></field></page>
+        <page string="IMS Actions"><field name="action_ids"/></page>
+        <page string="Standards &amp; Clauses"><field name="standard_clause_ids" widget="many2many_tags"/></page>
+        <page string="Verification &amp; Closeout"><field name="verification_notes"/><field name="closure_notes"/></page>
+      </notebook></sheet><chatter/></form></field></record>
+  <record id="action_ims_change" model="ir.actions.act_window"><field name="name">Change Control</field><field name="res_model">ims.change</field><field name="view_mode">list,form</field><field name="search_view_id" ref="view_ims_change_search"/></record>
+  <menuitem id="menu_ims_change" name="Change Control" parent="menu_ims_documents" action="action_ims_change" sequence="30"/>
+</odoo>

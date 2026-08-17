@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- GENERIC COMMERCIAL SHOWCASE DATASET: no real organizations or persons. -->
+
+  <!-- 5x5 risk matrix -->
+  <record id="demo_matrix_5x5" model="ims.risk.matrix"><field name="name">IMS Pro 5x5 Risk Matrix</field><field name="domain">enterprise</field></record>
+  <record id="demo_prob_1" model="ims.risk.scale"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="scale_type">probability</field><field name="name">Rare</field><field name="score">1</field></record>
+  <record id="demo_prob_2" model="ims.risk.scale"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="scale_type">probability</field><field name="name">Unlikely</field><field name="score">2</field></record>
+  <record id="demo_prob_3" model="ims.risk.scale"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="scale_type">probability</field><field name="name">Possible</field><field name="score">3</field></record>
+  <record id="demo_prob_4" model="ims.risk.scale"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="scale_type">probability</field><field name="name">Likely</field><field name="score">4</field></record>
+  <record id="demo_prob_5" model="ims.risk.scale"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="scale_type">probability</field><field name="name">Almost Certain</field><field name="score">5</field></record>
+  <record id="demo_sev_1" model="ims.risk.scale"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="scale_type">severity</field><field name="name">Negligible</field><field name="score">1</field></record>
+  <record id="demo_sev_2" model="ims.risk.scale"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="scale_type">severity</field><field name="name">Minor</field><field name="score">2</field></record>
+  <record id="demo_sev_3" model="ims.risk.scale"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="scale_type">severity</field><field name="name">Moderate</field><field name="score">3</field></record>
+  <record id="demo_sev_4" model="ims.risk.scale"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="scale_type">severity</field><field name="name">Major</field><field name="score">4</field></record>
+  <record id="demo_sev_5" model="ims.risk.scale"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="scale_type">severity</field><field name="name">Severe / Critical</field><field name="score">5</field></record>
+  <record id="demo_level_low" model="ims.risk.level"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="name">LOW</field><field name="min_score">1</field><field name="max_score">4</field><field name="requires_treatment">False</field></record>
+  <record id="demo_level_medium" model="ims.risk.level"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="name">MEDIUM</field><field name="min_score">5</field><field name="max_score">9</field></record>
+  <record id="demo_level_high" model="ims.risk.level"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="name">HIGH</field><field name="min_score">10</field><field name="max_score">16</field><field name="requires_management_acceptance">True</field></record>
+  <record id="demo_level_critical" model="ims.risk.level"><field name="matrix_id" ref="demo_matrix_5x5"/><field name="name">CRITICAL</field><field name="min_score">17</field><field name="max_score">25</field><field name="requires_management_acceptance">True</field></record>
+
+  <!-- 29 processes here + ISP 041 from demo/ims_demo.xml = 30 process showcase -->
+  <record id="demo_process_01" model="ims.process"><field name="code">LSP 052</field><field name="name">Customer Focus</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_02" model="ims.process"><field name="code">LSP 053</field><field name="name">IMS Policy</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_03" model="ims.process"><field name="code">LSP 054</field><field name="name">Organizational Roles, Responsibilities &amp; Authorities</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_04" model="ims.process"><field name="code">PLP 062</field><field name="name">IMS Objectives and Planning</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_05" model="ims.process"><field name="code">PLP 063</field><field name="name">Planning of Changes</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_06" model="ims.process"><field name="code">SPP 071</field><field name="name">Resources</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_07" model="ims.process"><field name="code">SPP 072</field><field name="name">Competence</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_08" model="ims.process"><field name="code">SPP 073</field><field name="name">Awareness</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_09" model="ims.process"><field name="code">SPP 074</field><field name="name">Communication &amp; Organizational Knowledge</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_10" model="ims.process"><field name="code">SPP 075</field><field name="name">Documented Information</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_11" model="ims.process"><field name="code">OPP 081</field><field name="name">Operational Planning &amp; Control</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_12" model="ims.process"><field name="code">OPP 082</field><field name="name">Requirements for Products &amp; Services</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_13" model="ims.process"><field name="code">OPP 083</field><field name="name">Design &amp; Development</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_14" model="ims.process"><field name="code">OPP 084</field><field name="name">Externally Provided Products &amp; Services</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_15" model="ims.process"><field name="code">OPP 085</field><field name="name">Production &amp; Service Provision</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_16" model="ims.process"><field name="code">OPP 086</field><field name="name">Release of Products &amp; Services</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_17" model="ims.process"><field name="code">OPP 087</field><field name="name">Control of Nonconforming Outputs</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_18" model="ims.process"><field name="code">PEP 091</field><field name="name">Monitoring, Measurement, Analysis &amp; Evaluation</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_19" model="ims.process"><field name="code">PEP 092</field><field name="name">Internal Audit</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_20" model="ims.process"><field name="code">PEP 093</field><field name="name">Management Review</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_21" model="ims.process"><field name="code">IMP 101</field><field name="name">Improvement</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_22" model="ims.process"><field name="code">IMP 102</field><field name="name">Nonconformity &amp; Corrective Action</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_23" model="ims.process"><field name="code">ENV 611</field><field name="name">Environmental Aspects &amp; Impacts</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_24" model="ims.process"><field name="code">ENV 612</field><field name="name">Compliance Obligations</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_25" model="ims.process"><field name="code">ENV 813</field><field name="name">Operational Environmental Controls</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_26" model="ims.process"><field name="code">OHS 611</field><field name="name">Worker Consultation &amp; Participation</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_27" model="ims.process"><field name="code">OHS 612</field><field name="name">Hazard Identification &amp; Risk Assessment</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_28" model="ims.process"><field name="code">OHS 613</field><field name="name">OH&amp;S Legal and Other Requirements</field><field name="owner_id" ref="base.user_admin"/></record><record id="demo_process_29" model="ims.process"><field name="code">OHS 814</field><field name="name">Emergency Preparedness &amp; Response</field><field name="owner_id" ref="base.user_admin"/></record>
+
+  <!-- Document tree -->
+  <record id="demo_folder_system" model="ims.document.folder"><field name="name">Integrated Management System</field></record>
+  <record id="demo_folder_policy" model="ims.document.folder"><field name="name">Policies</field><field name="parent_id" ref="demo_folder_system"/></record>
+  <record id="demo_folder_manual2" model="ims.document.folder"><field name="name">IMS Manual</field><field name="parent_id" ref="demo_folder_system"/></record>
+  <record id="demo_folder_procedures2" model="ims.document.folder"><field name="name">Procedures</field><field name="parent_id" ref="demo_folder_system"/></record>
+  <record id="demo_folder_external" model="ims.document.folder"><field name="name">External Documents</field></record>
+  <record id="demo_folder_iso" model="ims.document.folder"><field name="name">ISO Standards</field><field name="parent_id" ref="demo_folder_external"/></record>
+  <record id="demo_folder_legal" model="ims.document.folder"><field name="name">Legislation &amp; Compliance</field><field name="parent_id" ref="demo_folder_external"/></record>
+  <record id="demo_doc_1" model="ims.document">
+      <field name="code">POL-IMS-01</field><field name="name">Integrated Management System Policy</field>
+      <field name="category_id" ref="demo_doc_category"/><field name="folder_id" ref="demo_folder_policy"/>
+      <field name="owner_id" ref="base.user_admin"/>
+    </record>
+    <record id="demo_doc_1_rev" model="ims.document.revision">
+      <field name="document_id" ref="demo_doc_1"/><field name="revision">1</field><field name="state">active</field>
+      <field name="effective_date">2026-07-11</field><field name="review_date">2027-07-11</field>
+      <field name="body_html"><![CDATA[<h2>Integrated Management System Policy</h2><p>This controlled demonstration document illustrates the IMS Pro document lifecycle, approval, release and revision logic.</p><h3>Purpose</h3><p>Define responsibilities, controls and documented evidence for the applicable IMS process.</p>]]></field>
+      <field name="release_notes">Approved and released demonstration revision.</field>
+      <field name="change_summary">Periodic review and improvement of the integrated management system.</field>
+    </record><record id="demo_doc_2" model="ims.document">
+      <field name="code">MAN-IMS-01</field><field name="name">Integrated Management System Manual</field>
+      <field name="category_id" ref="demo_doc_category"/><field name="folder_id" ref="demo_folder_manual2"/>
+      <field name="owner_id" ref="base.user_admin"/>
+    </record>
+    <record id="demo_doc_2_rev" model="ims.document.revision">
+      <field name="document_id" ref="demo_doc_2"/><field name="revision">2</field><field name="state">active</field>
+      <field name="effective_date">2026-07-12</field><field name="review_date">2027-07-12</field>
+      <field name="body_html"><![CDATA[<h2>Integrated Management System Manual</h2><p>This controlled demonstration document illustrates the IMS Pro document lifecycle, approval, release and revision logic.</p><h3>Purpose</h3><p>Define responsibilities, controls and documented evidence for the applicable IMS process.</p>]]></field>
+      <field name="release_notes">Approved and released demonstration revision.</field>
+      <field name="change_summary">Periodic review and improvement of the integrated management system.</field>
+    </record><record id="demo_doc_3" model="ims.document">
+      <field name="code">PROC-DOC-01</field><field name="name">Control of Documented Information</field>
+      <field name="category_id" ref="demo_doc_category"/><field name="folder_id" ref="demo_folder_procedures2"/>
+      <field name="owner_id" ref="base.user_admin"/>
+    </record>
+    <record id="demo_doc_3_rev" model="ims.document.revision">
+      <field name="document_id" ref="demo_doc_3"/><field name="revision">3</field><field name="state">active</field>
+      <field name="effective_date">2026-07-13</field><field name="review_date">2027-07-13</field>
+      <field name="body_html"><![CDATA[<h2>Control of Documented Information</h2><p>This controlled demonstration document illustrates the IMS Pro document lifecycle, approval, release and revision logic.</p><h3>Purpose</h3><p>Define responsibilities, controls and documented evidence for the applicable IMS process.</p>]]></field>
+      <field name="release_notes">Approved and released demonstration revision.</field>
+      <field name="change_summary">Periodic review and improvement of the integrated management system.</field>
+    </record><record id="demo_doc_4" model="ims.document">
+      <field name="code">PROC-RSK-01</field><field name="name">Risk and Opportunity Management</field>
+      <field name="category_id" ref="demo_doc_category"/><field name="folder_id" ref="demo_folder_procedures2"/>
+      <field name="owner_id" ref="base.user_admin"/>
+    </record>
+    <record id="demo_doc_4_rev" model="ims.document.revision">
+      <field name="document_id" ref="demo_doc_4"/><field name="revision">3</field><field name="state">active</field>
+      <field name="effective_date">2026-07-14</field><field name="review_date">2027-07-14</field>
+      <field name="body_html"><![CDATA[<h2>Risk and Opportunity Management</h2><p>This controlled demonstration document illustrates the IMS Pro document lifecycle, approval, release and revision logic.</p><h3>Purpose</h3><p>Define responsibilities, controls and documented evidence for the applicable IMS process.</p>]]></field>
+      <field name="release_notes">Approved and released demonstration revision.</field>
+      <field name="change_summary">Periodic review and improvement of the integrated management system.</field>
+    </record><record id="demo_doc_5" model="ims.document">
+      <field name="code">PROC-AUD-01</field><field name="name">Internal Audit Procedure</field>
+      <field name="category_id" ref="demo_doc_category"/><field name="folder_id" ref="demo_folder_procedures2"/>
+      <field name="owner_id" ref="base.user_admin"/>
+    </record>
+    <record id="demo_doc_5_rev" model="ims.document.revision">
+      <field name="document_id" ref="demo_doc_5"/><field name="revision">2</field><field name="state">active</field>
+      <field name="effective_date">2026-07-15</field><field name="review_date">2027-07-15</field>
+      <field name="body_html"><![CDATA[<h2>Internal Audit Procedure</h2><p>This controlled demonstration document illustrates the IMS Pro document lifecycle, approval, release and revision logic.</p><h3>Purpose</h3><p>Define responsibilities, controls and documented evidence for the applicable IMS process.</p>]]></field>
+      <field name="release_notes">Approved and released demonstration revision.</field>
+      <field name="change_summary">Periodic review and improvement of the integrated management system.</field>
+    </record><record id="demo_doc_6" model="ims.document">
+      <field name="code">PROC-CAPA-01</field><field name="name">Nonconformity and Corrective Action</field>
+      <field name="category_id" ref="demo_doc_category"/><field name="folder_id" ref="demo_folder_procedures2"/>
+      <field name="owner_id" ref="base.user_admin"/>
+    </record>
+    <record id="demo_doc_6_rev" model="ims.document.revision">
+      <field name="document_id" ref="demo_doc_6"/><field name="revision">4</field><field name="state">active</field>
+      <field name="effective_date">2026-07-16</field><field name="review_date">2027-07-16</field>
+      <field name="body_html"><![CDATA[<h2>Nonconformity and Corrective Action</h2><p>This controlled demonstration document illustrates the IMS Pro document lifecycle, approval, release and revision logic.</p><h3>Purpose</h3><p>Define responsibilities, controls and documented evidence for the applicable IMS process.</p>]]></field>
+      <field name="release_notes">Approved and released demonstration revision.</field>
+      <field name="change_summary">Periodic review and improvement of the integrated management system.</field>
+    </record><record id="demo_doc_7" model="ims.document">
+      <field name="code">PROC-ENV-01</field><field name="name">Environmental Aspects and Operational Controls</field>
+      <field name="category_id" ref="demo_doc_category"/><field name="folder_id" ref="demo_folder_procedures2"/>
+      <field name="owner_id" ref="base.user_admin"/>
+    </record>
+    <record id="demo_doc_7_rev" model="ims.document.revision">
+      <field name="document_id" ref="demo_doc_7"/><field name="revision">2</field><field name="state">active</field>
+      <field name="effective_date">2026-07-17</field><field name="review_date">2027-07-17</field>
+      <field name="body_html"><![CDATA[<h2>Environmental Aspects and Operational Controls</h2><p>This controlled demonstration document illustrates the IMS Pro document lifecycle, approval, release and revision logic.</p><h3>Purpose</h3><p>Define responsibilities, controls and documented evidence for the applicable IMS process.</p>]]></field>
+      <field name="release_notes">Approved and released demonstration revision.</field>
+      <field name="change_summary">Periodic review and improvement of the integrated management system.</field>
+    </record><record id="demo_doc_8" model="ims.document">
+      <field name="code">PROC-OHS-01</field><field name="name">Hazard Identification and OH&amp;S Risk Assessment</field>
+      <field name="category_id" ref="demo_doc_category"/><field name="folder_id" ref="demo_folder_procedures2"/>
+      <field name="owner_id" ref="base.user_admin"/>
+    </record>
+    <record id="demo_doc_8_rev" model="ims.document.revision">
+      <field name="document_id" ref="demo_doc_8"/><field name="revision">3</field><field name="state">active</field>
+      <field name="effective_date">2026-07-18</field><field name="review_date">2027-07-18</field>
+      <field name="body_html"><![CDATA[<h2>Hazard Identification and OH&S Risk Assessment</h2><p>This controlled demonstration document illustrates the IMS Pro document lifecycle, approval, release and revision logic.</p><h3>Purpose</h3><p>Define responsibilities, controls and documented evidence for the applicable IMS process.</p>]]></field>
+      <field name="release_notes">Approved and released demonstration revision.</field>
+      <field name="change_summary">Periodic review and improvement of the integrated management system.</field>
+    </record>
+
+  <!-- Risk projects / hazards -->
+  <record id="demo_risk_project_ohs" model="ims.risk.project"><field name="name">OH&amp;S Hazard Identification and Assessment</field><field name="domain">ohs</field><field name="process_id" ref="demo_process_27"/><field name="owner_id" ref="base.user_admin"/><field name="matrix_id" ref="demo_matrix_5x5"/><field name="state">active</field></record>
+  <record id="demo_hazard_height" model="ims.risk.hazard"><field name="project_id" ref="demo_risk_project_ohs"/><field name="name">Work at height</field><field name="category">Physical hazard</field><field name="activity">Installation and maintenance</field><field name="condition">normal</field></record>
+  <record id="demo_hazard_handling" model="ims.risk.hazard"><field name="project_id" ref="demo_risk_project_ohs"/><field name="name">Mechanical handling of loads</field><field name="category">Mechanical hazard</field><field name="activity">Material handling</field><field name="condition">normal</field></record>
+  <record id="demo_hazard_fumes" model="ims.risk.hazard"><field name="project_id" ref="demo_risk_project_ohs"/><field name="name">Welding fumes and gases</field><field name="category">Chemical exposure</field><field name="activity">Welding</field><field name="condition">normal</field></record>
+
+  <record id="demo_risk_project_env" model="ims.risk.project"><field name="name">Environmental Aspects and Impacts</field><field name="domain">environment</field><field name="process_id" ref="demo_process_23"/><field name="owner_id" ref="base.user_admin"/><field name="matrix_id" ref="demo_matrix_5x5"/><field name="state">active</field></record>
+  <record id="demo_aspect_energy" model="ims.risk.hazard"><field name="project_id" ref="demo_risk_project_env"/><field name="name">Electricity consumption</field><field name="category">Resource consumption</field><field name="activity">Facility and production operation</field><field name="condition">normal</field><field name="directness">direct</field></record>
+  <record id="demo_aspect_waste" model="ims.risk.hazard"><field name="project_id" ref="demo_risk_project_env"/><field name="name">Generation and segregation of hazardous waste</field><field name="category">Waste</field><field name="condition">normal</field><field name="directness">direct</field></record>
+  <record id="demo_aspect_spill" model="ims.risk.hazard"><field name="project_id" ref="demo_risk_project_env"/><field name="name">Chemical storage and accidental release</field><field name="category">Spill / release</field><field name="condition">emergency</field><field name="directness">direct</field></record>
+
+  <record id="demo_risk_project_quality" model="ims.risk.project"><field name="name">Quality and Operational Risks &amp; Opportunities</field><field name="domain">quality</field><field name="process_id" ref="demo_process_18"/><field name="owner_id" ref="base.user_admin"/><field name="matrix_id" ref="demo_matrix_5x5"/><field name="state">active</field></record>
+  <record id="demo_hazard_quality" model="ims.risk.hazard"><field name="project_id" ref="demo_risk_project_quality"/><field name="name">Process capability and finishing consistency</field><field name="category">Quality process</field></record>
+  <record id="demo_hazard_supplier" model="ims.risk.hazard"><field name="project_id" ref="demo_risk_project_quality"/><field name="name">External provider delivery performance</field><field name="category">Supply chain</field></record>
+
+  <record id="demo_risk_ohs_1" model="ims.risk.case">
+      <field name="title">Fall from height during installation activity</field><field name="hazard_id" ref="demo_hazard_height"/>
+      <field name="event">A credible event associated with the identified hazard or source may occur during normal operations.</field>
+      <field name="consequence">Potential impact on people, environment, quality, delivery or system effectiveness.</field>
+      <field name="initial_probability_id" ref="demo_prob_3"/><field name="initial_severity_id" ref="demo_sev_5"/>
+      <field name="residual_probability_id" ref="demo_prob_1"/><field name="residual_severity_id" ref="demo_sev_5"/>
+      <field name="responsible_id" ref="base.user_admin"/><field name="state">monitoring</field>
+    </record><record id="demo_risk_ohs_2" model="ims.risk.case">
+      <field name="title">Hand injury during mechanical handling</field><field name="hazard_id" ref="demo_hazard_handling"/>
+      <field name="event">A credible event associated with the identified hazard or source may occur during normal operations.</field>
+      <field name="consequence">Potential impact on people, environment, quality, delivery or system effectiveness.</field>
+      <field name="initial_probability_id" ref="demo_prob_4"/><field name="initial_severity_id" ref="demo_sev_3"/>
+      <field name="residual_probability_id" ref="demo_prob_2"/><field name="residual_severity_id" ref="demo_sev_2"/>
+      <field name="responsible_id" ref="base.user_admin"/><field name="state">progress</field>
+    </record><record id="demo_risk_ohs_3" model="ims.risk.case">
+      <field name="title">Exposure to welding fumes</field><field name="hazard_id" ref="demo_hazard_fumes"/>
+      <field name="event">A credible event associated with the identified hazard or source may occur during normal operations.</field>
+      <field name="consequence">Potential impact on people, environment, quality, delivery or system effectiveness.</field>
+      <field name="initial_probability_id" ref="demo_prob_3"/><field name="initial_severity_id" ref="demo_sev_4"/>
+      <field name="residual_probability_id" ref="demo_prob_2"/><field name="residual_severity_id" ref="demo_sev_3"/>
+      <field name="responsible_id" ref="base.user_admin"/><field name="state">monitoring</field>
+    </record><record id="demo_risk_env_1" model="ims.risk.case">
+      <field name="title">High electricity consumption</field><field name="hazard_id" ref="demo_aspect_energy"/>
+      <field name="event">A credible event associated with the identified hazard or source may occur during normal operations.</field>
+      <field name="consequence">Potential impact on people, environment, quality, delivery or system effectiveness.</field>
+      <field name="initial_probability_id" ref="demo_prob_4"/><field name="initial_severity_id" ref="demo_sev_3"/>
+      <field name="residual_probability_id" ref="demo_prob_2"/><field name="residual_severity_id" ref="demo_sev_2"/>
+      <field name="responsible_id" ref="base.user_admin"/><field name="state">monitoring</field>
+    </record><record id="demo_risk_env_2" model="ims.risk.case">
+      <field name="title">Incorrect segregation of hazardous waste</field><field name="hazard_id" ref="demo_aspect_waste"/>
+      <field name="event">A credible event associated with the identified hazard or source may occur during normal operations.</field>
+      <field name="consequence">Potential impact on people, environment, quality, delivery or system effectiveness.</field>
+      <field name="initial_probability_id" ref="demo_prob_3"/><field name="initial_severity_id" ref="demo_sev_4"/>
+      <field name="residual_probability_id" ref="demo_prob_1"/><field name="residual_severity_id" ref="demo_sev_3"/>
+      <field name="responsible_id" ref="base.user_admin"/><field name="state">progress</field>
+    </record><record id="demo_risk_env_3" model="ims.risk.case">
+      <field name="title">Accidental chemical release</field><field name="hazard_id" ref="demo_aspect_spill"/>
+      <field name="event">A credible event associated with the identified hazard or source may occur during normal operations.</field>
+      <field name="consequence">Potential impact on people, environment, quality, delivery or system effectiveness.</field>
+      <field name="initial_probability_id" ref="demo_prob_2"/><field name="initial_severity_id" ref="demo_sev_5"/>
+      <field name="residual_probability_id" ref="demo_prob_1"/><field name="residual_severity_id" ref="demo_sev_4"/>
+      <field name="responsible_id" ref="base.user_admin"/><field name="state">monitoring</field>
+    </record><record id="demo_risk_q_1" model="ims.risk.case">
+      <field name="title">Recurring surface finishing defects</field><field name="hazard_id" ref="demo_hazard_quality"/>
+      <field name="event">A credible event associated with the identified hazard or source may occur during normal operations.</field>
+      <field name="consequence">Potential impact on people, environment, quality, delivery or system effectiveness.</field>
+      <field name="initial_probability_id" ref="demo_prob_4"/><field name="initial_severity_id" ref="demo_sev_3"/>
+      <field name="residual_probability_id" ref="demo_prob_2"/><field name="residual_severity_id" ref="demo_sev_2"/>
+      <field name="responsible_id" ref="base.user_admin"/><field name="state">progress</field>
+    </record><record id="demo_risk_q_2" model="ims.risk.case">
+      <field name="title">Late supplier delivery affecting project schedule</field><field name="hazard_id" ref="demo_hazard_supplier"/>
+      <field name="event">A credible event associated with the identified hazard or source may occur during normal operations.</field>
+      <field name="consequence">Potential impact on people, environment, quality, delivery or system effectiveness.</field>
+      <field name="initial_probability_id" ref="demo_prob_4"/><field name="initial_severity_id" ref="demo_sev_4"/>
+      <field name="residual_probability_id" ref="demo_prob_3"/><field name="residual_severity_id" ref="demo_sev_3"/>
+      <field name="responsible_id" ref="base.user_admin"/><field name="state">progress</field>
+    </record>
+
+  <!-- Risk controls -->
+  <record id="demo_control_1" model="ims.risk.control"><field name="name">Permit and fall-protection verification before work at height</field><field name="category">administrative</field><field name="description">Verify competence, equipment inspection and fall-protection controls before work starts.</field><field name="responsible_id" ref="base.user_admin"/><field name="state">validated</field><field name="validation_result">effective</field></record>
+  <record id="demo_control_2" model="ims.risk.control"><field name="name">Energy monitoring and reduction program</field><field name="category">environmental</field><field name="description">Monitor high-consumption processes, efficient lighting and opportunities for renewable generation.</field><field name="responsible_id" ref="base.user_admin"/><field name="state">implemented</field><field name="validation_result">partial</field></record>
+  <record id="demo_control_3" model="ims.risk.control"><field name="name">Hazardous waste segregation and labeling controls</field><field name="category">environmental</field><field name="responsible_id" ref="base.user_admin"/><field name="state">validated</field><field name="validation_result">effective</field></record>
+
+  <!-- Nonconformities & incidents -->
+  <record id="demo_nc_q1" model="ims.nonconformity"><field name="title">Surface deformation identified during final inspection</field><field name="domain">quality</field><field name="nc_type">product</field><field name="source">final</field><field name="severity">major</field><field name="process_id" ref="demo_process_17"/><field name="description">Visual and dimensional deviation detected before release. Affected output was segregated.</field><field name="immediate_action">Place affected items on hold and initiate technical investigation.</field><field name="assigned_to_id" ref="base.user_admin"/><field name="due_date">2026-08-28</field><field name="state">investigation</field></record>
+  <record id="demo_nc_q2" model="ims.nonconformity"><field name="title">Cleaning and passivation result outside acceptance criteria</field><field name="domain">quality</field><field name="nc_type">process</field><field name="source">in_process</field><field name="severity">minor</field><field name="description">Process record indicated inconsistent finishing result requiring rework and parameter review.</field><field name="assigned_to_id" ref="base.user_admin"/><field name="state">disposition</field></record>
+  <record id="demo_nc_ohs1" model="ims.nonconformity"><field name="title">Near miss during load handling</field><field name="domain">ohs</field><field name="nc_type">near_miss</field><field name="source">ohs</field><field name="severity">major</field><field name="description">Load shifted during internal handling without injury.</field><field name="immediate_action">Area secured; handling equipment and method reviewed before restarting activity.</field><field name="assigned_to_id" ref="base.user_admin"/><field name="due_date">2026-08-22</field><field name="state">containment</field></record>
+  <record id="demo_nc_env1" model="ims.nonconformity"><field name="title">Incorrect segregation of contaminated waste</field><field name="domain">environment</field><field name="nc_type">waste</field><field name="source">environment</field><field name="severity">major</field><field name="description">Waste container was identified with mixed waste that required controlled segregation.</field><field name="immediate_action">Container quarantined, contents reclassified and disposal route verified.</field><field name="assigned_to_id" ref="base.user_admin"/><field name="due_date">2026-08-24</field><field name="state">investigation</field></record>
+  <record id="demo_nc_int1" model="ims.nonconformity"><field name="title">Controlled document used after review date</field><field name="domain">integrated</field><field name="nc_type">documentation</field><field name="source">audit</field><field name="severity">minor</field><field name="description">A sampled work instruction remained in use with periodic review overdue.</field><field name="assigned_to_id" ref="base.user_admin"/><field name="state">implementation</field></record>
+
+  <!-- CAPA -->
+  <record id="demo_capa_1" model="ims.capa"><field name="title">Stabilize finishing process and strengthen final verification</field><field name="domain">quality</field><field name="process_id" ref="demo_process_22"/><field name="description">Corrective action initiated following repeated variation in finishing results.</field><field name="containment">Increase final verification and segregate affected output.</field><field name="root_cause_method">5why</field><field name="root_cause">Process parameters and verification criteria were not consistently controlled across shifts.</field><field name="corrective_action">Standardize process parameters, revise instruction and verify operator competence.</field><field name="risk_update_required">True</field><field name="qms_update_required">True</field><field name="assigned_to_id" ref="base.user_admin"/><field name="due_date">2026-09-05</field><field name="state">implementation</field></record>
+  <record id="demo_capa_2" model="ims.capa"><field name="title">Improve load-handling planning and pre-use verification</field><field name="domain">ohs</field><field name="process_id" ref="demo_process_22"/><field name="description">Corrective action following an OH&amp;S near miss.</field><field name="containment">Suspend the specific handling method pending review.</field><field name="root_cause_method">ishikawa</field><field name="root_cause">Handling plan did not sufficiently address load geometry and stability.</field><field name="corrective_action">Introduce lift-plan criteria and competency verification for non-routine loads.</field><field name="risk_update_required">True</field><field name="assigned_to_id" ref="base.user_admin"/><field name="due_date">2026-08-30</field><field name="state">actions</field></record>
+  <record id="demo_capa_3" model="ims.capa"><field name="title">Strengthen periodic document review controls</field><field name="domain">integrated</field><field name="process_id" ref="demo_process_22"/><field name="description">Ensure reviews are scheduled, evidenced and escalated before expiration.</field><field name="corrective_action">Configure reminders, overdue escalation and review evidence in Document Control.</field><field name="assigned_to_id" ref="base.user_admin"/><field name="followup_due_date">2026-10-01</field><field name="state">followup</field><field name="effectiveness_criteria">No active controlled document remains beyond its review date without an approved disposition.</field></record>
+
+  <!-- Generic customer and complaint -->
+  <record id="demo_customer" model="res.partner"><field name="name">Demo Industrial Customer</field><field name="is_company">True</field></record>
+  <record id="demo_complaint_1" model="ims.complaint"><field name="title">Product arrived with visible transport damage</field><field name="customer_id" ref="demo_customer"/><field name="category">transit</field><field name="severity">high</field><field name="received_date">2026-08-06</field><field name="due_date">2026-08-20</field><field name="description">Customer reported visible damage after delivery and supplied supporting photographs.</field><field name="investigation">Review packing evidence, dispatch photographs, handling records and transport conditions.</field><field name="assigned_to_id" ref="base.user_admin"/><field name="state">investigation</field></record>
+  <record id="demo_complaint_2" model="ims.complaint"><field name="title">Documentation package incomplete at delivery</field><field name="customer_id" ref="demo_customer"/><field name="category">documentation</field><field name="severity">medium</field><field name="received_date">2026-07-23</field><field name="description">Required certificate was not included in the original document package.</field><field name="customer_response">Missing certificate issued and document-package checklist updated.</field><field name="decision">accepted</field><field name="assigned_to_id" ref="base.user_admin"/><field name="state">followup</field></record>
+
+  <!-- Change control -->
+  <record id="demo_change_1" model="ims.change"><field name="title">Revise controlled document review and escalation process</field><field name="description">Update review workflow, approval evidence and escalation for overdue controlled information.</field><field name="justification">Improvement identified from audit and management review.</field><field name="process_id" ref="demo_process_10"/><field name="requested_by_id" ref="base.user_admin"/><field name="owner_id" ref="base.user_admin"/><field name="priority">high</field><field name="state">implementation</field></record>
+  <record id="demo_change_impact_1" model="ims.change.impact"><field name="change_id" ref="demo_change_1"/><field name="category">documents</field><field name="affected">True</field><field name="action_required">True</field><field name="assessment">Document control workflow and related procedure require revision.</field></record>
+  <record id="demo_change_impact_2" model="ims.change.impact"><field name="change_id" ref="demo_change_1"/><field name="category">training</field><field name="affected">True</field><field name="action_required">True</field><field name="assessment">Document controllers require awareness of the updated workflow.</field></record>
+  <record id="demo_change_impact_3" model="ims.change.impact"><field name="change_id" ref="demo_change_1"/><field name="category">risk</field><field name="affected">True</field><field name="action_required">False</field><field name="assessment">No unacceptable new risk expected; verify after implementation.</field></record>
+
+  <!-- Audits -->
+  <record id="demo_audit_program" model="ims.audit.program"><field name="name">IMS Internal Audit Program 2026</field><field name="year">2026</field><field name="state">active</field></record>
+  <record id="demo_audit_1" model="ims.audit"><field name="title">Integrated Management System Internal Audit – Cycle 2</field><field name="program_id" ref="demo_audit_program"/><field name="audit_type">internal</field><field name="scope">Quality, environment and OH&amp;S processes across selected operational and support activities.</field><field name="criteria">ISO 9001, ISO 14001, ISO 45001, internal documented information and applicable compliance obligations.</field><field name="planned_date">2026-09-14</field><field name="lead_auditor_id" ref="base.user_admin"/><field name="state">planned</field></record>
+  <record id="demo_audit_2" model="ims.audit"><field name="title">Operational and OH&amp;S Process Audit</field><field name="program_id" ref="demo_audit_program"/><field name="audit_type">hse</field><field name="scope">Operational controls, worker safety and emergency preparedness.</field><field name="criteria">IMS operational controls and OH&amp;S requirements.</field><field name="planned_date">2026-07-20</field><field name="actual_date">2026-07-21</field><field name="lead_auditor_id" ref="base.user_admin"/><field name="state">completed</field></record>
+
+  <!-- Audit plan using a representative subset; processes remain fully available in master -->
+  <record id="demo_audit_plan_1" model="ims.audit.plan.item"><field name="audit_id" ref="demo_audit_1"/><field name="sequence">10</field><field name="process_id" ref="demo_process_10"/><field name="auditor_id" ref="base.user_admin"/><field name="planned_date">2026-09-14</field></record>
+  <record id="demo_audit_plan_2" model="ims.audit.plan.item"><field name="audit_id" ref="demo_audit_1"/><field name="sequence">20</field><field name="process_id" ref="demo_process_18"/><field name="auditor_id" ref="base.user_admin"/><field name="planned_date">2026-09-15</field></record>
+  <record id="demo_audit_plan_3" model="ims.audit.plan.item"><field name="audit_id" ref="demo_audit_1"/><field name="sequence">30</field><field name="process_id" ref="demo_process_23"/><field name="auditor_id" ref="base.user_admin"/><field name="planned_date">2026-09-16</field></record>
+  <record id="demo_audit_plan_4" model="ims.audit.plan.item"><field name="audit_id" ref="demo_audit_1"/><field name="sequence">40</field><field name="process_id" ref="demo_process_27"/><field name="auditor_id" ref="base.user_admin"/><field name="planned_date">2026-09-17</field></record>
+  <record id="demo_audit_plan_5" model="ims.audit.plan.item"><field name="audit_id" ref="demo_audit_1"/><field name="sequence">50</field><field name="process_id" ref="demo_process_20"/><field name="auditor_id" ref="base.user_admin"/><field name="planned_date">2026-09-18</field></record>
+
+  <record id="demo_finding_1" model="ims.audit.finding"><field name="audit_id" ref="demo_audit_2"/><field name="title">Periodic document review evidence incomplete</field><field name="finding_type">minor</field><field name="process_id" ref="demo_process_10"/><field name="description">Sampled records did not consistently demonstrate completed review before due date.</field><field name="responsible_id" ref="base.user_admin"/><field name="due_date">2026-08-25</field><field name="state">action</field></record>
+  <record id="demo_finding_2" model="ims.audit.finding"><field name="audit_id" ref="demo_audit_2"/><field name="title">Environmental waste labeling practice inconsistent</field><field name="finding_type">minor</field><field name="process_id" ref="demo_process_25"/><field name="description">One sampled temporary waste container did not display the required identification.</field><field name="responsible_id" ref="base.user_admin"/><field name="due_date">2026-08-18</field><field name="state">followup</field></record>
+  <record id="demo_finding_3" model="ims.audit.finding"><field name="audit_id" ref="demo_audit_2"/><field name="title">Opportunity to integrate pre-task risk review with work planning</field><field name="finding_type">ofi</field><field name="process_id" ref="demo_process_27"/><field name="description">Integrating risk review into work planning could improve consistency and evidence.</field><field name="responsible_id" ref="base.user_admin"/><field name="state">open</field></record>
+  <record id="demo_finding_4" model="ims.audit.finding"><field name="audit_id" ref="demo_audit_2"/><field name="title">Good practice: visual segregation of inspection status</field><field name="finding_type">good</field><field name="process_id" ref="demo_process_16"/><field name="description">Clear visual status identification reduced the risk of unintended product release.</field><field name="state">closed</field></record>
+
+  <!-- Management review 15-item template -->
+  <record id="demo_review_template" model="ims.review.template"><field name="name">Integrated IMS Management Review</field></record>
+  <record id="demo_review_item_01" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">10</field><field name="name">Follow-up Actions and OFI from Previous Review</field></record>
+  <record id="demo_review_item_02" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">20</field><field name="name">Compliance with Legal &amp; Other Requirements</field></record>
+  <record id="demo_review_item_03" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">30</field><field name="name">Changes in External &amp; Internal Issues Relevant to IMS</field></record>
+  <record id="demo_review_item_04" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">40</field><field name="name">Customer Satisfaction, Feedback and Complaints</field></record>
+  <record id="demo_review_item_05" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">50</field><field name="name">Conformity of Products and Services</field></record>
+  <record id="demo_review_item_06" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">60</field><field name="name">Environmental Aspects and Performance</field></record>
+  <record id="demo_review_item_07" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">70</field><field name="name">Effectiveness of Actions to Address Risks &amp; Opportunities</field></record>
+  <record id="demo_review_item_08" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">80</field><field name="name">Nonconformities and Corrective Actions</field></record>
+  <record id="demo_review_item_09" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">90</field><field name="name">Internal, External and Customer Audits</field></record>
+  <record id="demo_review_item_10" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">100</field><field name="name">External Providers Performance</field></record>
+  <record id="demo_review_item_11" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">110</field><field name="name">Process Performance, KPI, Monitoring &amp; Measurement</field></record>
+  <record id="demo_review_item_12" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">120</field><field name="name">IMS Policy and Objectives</field></record>
+  <record id="demo_review_item_13" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">130</field><field name="name">Adequacy of Resources</field></record>
+  <record id="demo_review_item_14" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">140</field><field name="name">Consultation and Participation of Workers</field></record>
+  <record id="demo_review_item_15" model="ims.review.item.template"><field name="template_id" ref="demo_review_template"/><field name="sequence">150</field><field name="name">Opportunities for Improvement, Changes and IMS Planning</field></record>
+
+  <record id="demo_review_2025" model="ims.review"><field name="title">Integrated Management System Review 2025</field><field name="template_id" ref="demo_review_template"/><field name="review_type">integrated</field><field name="period_from">2025-01-01</field><field name="period_to">2025-12-31</field><field name="review_date">2026-02-12</field><field name="coordinator_id" ref="base.user_admin"/><field name="state">closed</field><field name="closeout_notes">Review completed. Decisions were transferred into objectives, CAPA and improvement actions.</field></record>
+  <record id="demo_review_2026" model="ims.review"><field name="title">Integrated Management System Review 2026</field><field name="template_id" ref="demo_review_template"/><field name="review_type">integrated</field><field name="period_from">2026-01-01</field><field name="period_to">2026-12-31</field><field name="review_date">2027-02-11</field><field name="coordinator_id" ref="base.user_admin"/><field name="state">planned</field></record>
+
+  <!-- Objectives -->
+  <record id="demo_obj_1" model="ims.objective"><field name="title">Reduce recurring quality nonconformities</field><field name="domain">quality</field><field name="process_id" ref="demo_process_21"/><field name="owner_id" ref="base.user_admin"/><field name="baseline">Current recurring NC rate</field><field name="target">Reduce recurring NC by at least 20%</field><field name="progress">55</field><field name="actual_value">11% reduction YTD</field><field name="due_date">2026-12-31</field><field name="state">progress</field></record>
+  <record id="demo_obj_2" model="ims.objective"><field name="title">Reduce electricity intensity per production hour</field><field name="domain">environment</field><field name="process_id" ref="demo_process_23"/><field name="owner_id" ref="base.user_admin"/><field name="baseline">2025 normalized consumption</field><field name="target">8% reduction</field><field name="progress">62</field><field name="actual_value">5.1% reduction YTD</field><field name="due_date">2026-12-31</field><field name="state">progress</field></record>
+  <record id="demo_obj_3" model="ims.objective"><field name="title">Zero lost-time OH&amp;S accidents</field><field name="domain">ohs</field><field name="process_id" ref="demo_process_27"/><field name="owner_id" ref="base.user_admin"/><field name="baseline">Previous annual performance</field><field name="target">0 LTI</field><field name="progress">75</field><field name="actual_value">0 LTI YTD</field><field name="due_date">2026-12-31</field><field name="state">progress</field></record>
+
+  <!-- Compliance -->
+  <record id="demo_leg_1" model="ims.compliance.requirement"><field name="title">Occupational health and safety legal obligations</field><field name="authority">Competent national authority</field><field name="domain">ohs</field><field name="applicability">Applicable to workplace health and safety activities.</field><field name="obligation">Identify obligations, implement controls, evaluate compliance and maintain evidence.</field><field name="responsible_id" ref="base.user_admin"/><field name="compliance_status">compliant</field><field name="review_date">2026-11-30</field></record>
+  <record id="demo_leg_2" model="ims.compliance.requirement"><field name="title">Waste management and controlled disposal obligations</field><field name="authority">Environmental authority</field><field name="domain">environment</field><field name="applicability">Applicable to generated production and hazardous waste.</field><field name="obligation">Segregate, label, store, transfer and retain disposal evidence in accordance with applicable requirements.</field><field name="responsible_id" ref="base.user_admin"/><field name="compliance_status">partial</field><field name="review_date">2026-09-30</field></record>
+
+  <!-- My IMS Actions / overdue examples -->
+  <record id="demo_action_1" model="ims.action"><field name="name">Complete document review evidence for overdue procedure</field><field name="source_type">document</field><field name="responsible_id" ref="base.user_admin"/><field name="due_date">2026-08-12</field><field name="priority">1</field><field name="state">open</field></record>
+  <record id="demo_action_2" model="ims.action"><field name="name">Verify corrective action effectiveness for waste segregation</field><field name="source_type">audit</field><field name="responsible_id" ref="base.user_admin"/><field name="due_date">2026-08-19</field><field name="priority">1</field><field name="state">in_progress</field></record>
+  <record id="demo_action_3" model="ims.action"><field name="name">Update risk assessment after handling near miss</field><field name="source_type">risk</field><field name="responsible_id" ref="base.user_admin"/><field name="due_date">2026-08-21</field><field name="priority">2</field><field name="state">open</field></record>
+  <record id="demo_action_4" model="ims.action"><field name="name">Prepare management review KPI input</field><field name="source_type">review</field><field name="responsible_id" ref="base.user_admin"/><field name="due_date">2026-12-20</field><field name="state">open</field></record>
+</odoo>

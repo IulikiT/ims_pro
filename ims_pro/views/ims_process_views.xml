@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ims_process_list" model="ir.ui.view">
+        <field name="name">ims.process.list</field>
+        <field name="model">ims.process</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="owner_id"/>
+                <field name="department_id"/>
+                <field name="action_count"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ims_process_form" model="ir.ui.view">
+        <field name="name">ims.process.form</field>
+        <field name="model">ims.process</field>
+        <field name="arch" type="xml">
+            <form string="IMS Process">
+                <sheet>
+                    <group>
+                        <group><field name="code"/><field name="name"/><field name="parent_id"/></group>
+                        <group><field name="owner_id"/><field name="department_id"/><field name="active"/></group>
+                    </group>
+                    <notebook>
+                        <page string="Description"><field name="description"/></page>
+                        <page string="Standards &amp; Clauses"><field name="standard_clause_ids" widget="many2many_tags"/></page>
+                        <page string="IMS Actions"><field name="action_ids"/></page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="action_ims_process" model="ir.actions.act_window">
+        <field name="name">IMS Processes</field><field name="res_model">ims.process</field><field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="menu_ims_process" name="Processes" parent="menu_ims_management" action="action_ims_process" sequence="10"/>
+</odoo>

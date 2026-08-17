@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ims_capa_search" model="ir.ui.view">
+        <field name="name">ims.capa.search</field>
+        <field name="model">ims.capa</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/><field name="title"/><field name="domain"/><field name="process_id"/><field name="assigned_to_id"/>
+                <filter string="Open" name="open" domain="[('state','!=','closed')]"/>
+                <filter string="Follow-up" name="followup" domain="[('state','=','followup')]"/>
+                <separator/>
+                <filter string="Domain" name="g_domain" context="{'group_by':'domain'}"/>
+                <filter string="Process" name="g_process" context="{'group_by':'process_id'}"/>
+                <filter string="Responsible" name="g_owner" context="{'group_by':'assigned_to_id'}"/>
+                <filter string="Status" name="g_state" context="{'group_by':'state'}"/>
+            </search>
+        </field>
+    </record>
+    <record id="view_ims_capa_list" model="ir.ui.view">
+        <field name="name">ims.capa.list</field><field name="model">ims.capa</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="state != 'closed' and due_date &lt; context_today()">
+                <field name="name"/><field name="title"/><field name="domain"/><field name="process_id"/>
+                <field name="origination_date"/><field name="assigned_to_id"/><field name="due_date"/>
+                <field name="followup_due_date"/><field name="effectiveness_result"/><field name="state"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ims_capa_form" model="ir.ui.view">
+        <field name="name">ims.capa.form</field><field name="model">ims.capa</field>
+        <field name="arch" type="xml">
+            <form string="Corrective / Preventive Action">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,investigation,actions,implementation,followup,closed"/>
+                    <button name="action_close" type="object" string="Close CAPA" class="btn-primary" invisible="state == 'closed'"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="title"/>
+                        <h1><field name="title" placeholder="CAPA title..."/></h1>
+                    </div>
+                    <group>
+                        <group string="Identification">
+                            <field name="name"/>
+                            <field name="capa_type"/>
+                            <field name="domain"/>
+                            <field name="process_id"/>
+                        </group>
+                        <group string="Ownership &amp; Timing">
+                            <field name="origination_date"/>
+                            <field name="originated_by_id"/>
+                            <field name="assigned_to_id"/>
+                            <field name="due_date"/>
+                            <field name="followup_due_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="1. Problem &amp; Containment">
+                            <group><field name="description"/><field name="containment"/></group>
+                        </page>
+                        <page string="2. Investigation &amp; Root Cause">
+                            <group>
+                                <field name="investigation"/>
+                                <field name="root_cause_method"/>
+                                <field name="root_cause"/>
+                                <field name="systemic_effects"/>
+                            </group>
+                        </page>
+                        <page string="3. Corrective / Preventive Actions">
+                            <field name="corrective_action"/>
+                            <field name="preventive_action"/>
+                            <field name="action_ids"/>
+                        </page>
+                        <page string="4. IMS / Risk Updates">
+                            <group>
+                                <field name="qms_update_required"/>
+                                <field name="risk_update_required"/>
+                            </group>
+                            <field name="risk_case_ids" widget="many2many_tags"/>
+                            <field name="change_ids" widget="many2many_tags"/>
+                        </page>
+                        <page string="5. Implementation Verification">
+                            <field name="implementation_verification"/>
+                        </page>
+                        <page string="6. Follow-up &amp; Effectiveness">
+                            <field name="effectiveness_criteria"/>
+                            <field name="effectiveness_result"/>
+                            <field name="effectiveness_notes"/>
+                            <field name="recurrence"/>
+                        </page>
+                        <page string="Linked Records">
+                            <group><field name="nonconformity_id"/><field name="complaint_ids" widget="many2many_tags"/></group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="action_ims_capa" model="ir.actions.act_window">
+        <field name="name">CAPA</field><field name="res_model">ims.capa</field><field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_ims_capa_search"/>
+    </record>
+    <menuitem id="menu_ims_capa" name="CAPA" parent="menu_ims_improvement" action="action_ims_capa" sequence="30"/>
+</odoo>

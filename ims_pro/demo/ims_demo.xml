@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_standard_9001" model="ims.standard"><field name="name">ISO 9001</field><field name="version">2015</field><field name="domain">quality</field></record>
+    <record id="demo_standard_14001" model="ims.standard"><field name="name">ISO 14001</field><field name="version">2015</field><field name="domain">environment</field></record>
+    <record id="demo_standard_45001" model="ims.standard"><field name="name">ISO 45001</field><field name="version">2018</field><field name="domain">ohs</field></record>
+    <record id="demo_standard_27001" model="ims.standard"><field name="name">ISO/IEC 27001</field><field name="version">2022</field><field name="domain">information_security</field></record>
+
+    <record id="demo_doc_template" model="ims.document.template">
+        <field name="name">Default Controlled Document</field>
+        <field name="header_html"><![CDATA[<div><strong>IMS Pro — Controlled Document</strong></div>]]></field>
+        <field name="footer_html"><![CDATA[<div>Controlled copy. Verify current revision in IMS Pro Document Library.</div>]]></field>
+    </record>
+    <record id="demo_doc_category" model="ims.document.category">
+        <field name="name">IMS Controlled Document</field><field name="code_prefix">IMS</field>
+        <field name="revision_scheme">numeric</field><field name="default_review_months">12</field>
+        <field name="change_control_required">False</field><field name="template_id" ref="demo_doc_template"/>
+    </record>
+
+    <record id="demo_process_context" model="ims.process">
+        <field name="code">ISP 041</field><field name="name">Analysis of Context &amp; Interested Parties</field>
+        <field name="owner_id" ref="base.user_admin"/>
+        <field name="description">Analyze internal/external context, interested parties and relevant requirements.</field>
+    </record>
+</odoo>

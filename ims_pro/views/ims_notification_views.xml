@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ims_notification_rule_list" model="ir.ui.view">
+        <field name="name">ims.notification.rule.list</field>
+        <field name="model">ims.notification.rule</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence"/>
+                <field name="name"/>
+                <field name="event_type"/>
+                <field name="days_before"/>
+                <field name="escalation_days"/>
+                <field name="create_activity"/>
+                <field name="post_chatter"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ims_notification_rule_form" model="ir.ui.view">
+        <field name="name">ims.notification.rule.form</field>
+        <field name="model">ims.notification.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="event_type"/>
+                            <field name="days_before"/>
+                            <field name="escalation_days"/>
+                        </group>
+                        <group>
+                            <field name="create_activity"/>
+                            <field name="post_chatter"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_ims_notification_rule" model="ir.actions.act_window">
+        <field name="name">Notification Rules</field>
+        <field name="res_model">ims.notification.rule</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem id="menu_ims_notification_rule" name="Notifications &amp; Escalations"
+              parent="menu_ims_configuration" action="action_ims_notification_rule" sequence="40"/>
+</odoo>

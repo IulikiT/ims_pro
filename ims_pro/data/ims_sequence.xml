@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_ims_action" model="ir.sequence">
+        <field name="name">IMS Action</field>
+        <field name="code">ims.action</field>
+        <field name="prefix">ACT-%(year)s-</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="seq_ims_change" model="ir.sequence"><field name="name">IMS Change</field><field name="code">ims.change</field><field name="prefix">CHG-%(year)s-</field><field name="padding">4</field></record>
+    <record id="seq_ims_risk_project" model="ir.sequence"><field name="name">IMS Risk Project</field><field name="code">ims.risk.project</field><field name="prefix">RPR-%(year)s-</field><field name="padding">4</field></record>
+    <record id="seq_ims_risk_case" model="ir.sequence"><field name="name">IMS Risk Case</field><field name="code">ims.risk.case</field><field name="prefix">RSK-%(year)s-</field><field name="padding">5</field></record>
+    <record id="seq_ims_nc" model="ir.sequence"><field name="name">IMS Nonconformity</field><field name="code">ims.nonconformity</field><field name="prefix">NC-%(year)s-</field><field name="padding">4</field></record>
+    <record id="seq_ims_complaint" model="ir.sequence"><field name="name">IMS Complaint</field><field name="code">ims.complaint</field><field name="prefix">CC-%(year)s-</field><field name="padding">4</field></record>
+    <record id="seq_ims_capa" model="ir.sequence"><field name="name">IMS CAPA</field><field name="code">ims.capa</field><field name="prefix">CAPA-%(year)s-</field><field name="padding">4</field></record>
+    <record id="seq_ims_audit" model="ir.sequence"><field name="name">IMS Audit</field><field name="code">ims.audit</field><field name="prefix">AUD-%(year)s-</field><field name="padding">4</field></record>
+    <record id="seq_ims_audit_finding" model="ir.sequence"><field name="name">IMS Audit Finding</field><field name="code">ims.audit.finding</field><field name="prefix">AF-%(year)s-</field><field name="padding">4</field></record>
+    <record id="seq_ims_review" model="ir.sequence"><field name="name">IMS Review</field><field name="code">ims.review</field><field name="prefix">MR-%(year)s-</field><field name="padding">4</field></record>
+    <record id="seq_ims_objective" model="ir.sequence"><field name="name">IMS Objective</field><field name="code">ims.objective</field><field name="prefix">OBJ-%(year)s-</field><field name="padding">4</field></record>
+    <record id="seq_ims_compliance" model="ir.sequence"><field name="name">IMS Compliance</field><field name="code">ims.compliance</field><field name="prefix">LEG-%(year)s-</field><field name="padding">4</field></record>
+
+    <record id="seq_ims_supplier_scar" model="ir.sequence"><field name="name">IMS Supplier SCAR</field><field name="code">ims.supplier.scar</field><field name="prefix">SCAR-%(year)s-</field><field name="padding">4</field></record>
+</odoo>

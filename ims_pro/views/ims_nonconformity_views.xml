@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ims_nonconformity_search" model="ir.ui.view">
+        <field name="name">ims.nonconformity.search</field><field name="model">ims.nonconformity</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/><field name="title"/><field name="domain"/><field name="nc_type"/><field name="severity"/><field name="assigned_to_id"/>
+                <filter string="Open" name="open" domain="[('state','not in',('closed','cancelled'))]"/>
+                <filter string="Quality" name="quality" domain="[('domain','=','quality')]"/>
+                <filter string="OH&amp;S" name="ohs" domain="[('domain','=','ohs')]"/>
+                <filter string="Environment" name="environment" domain="[('domain','=','environment')]"/>
+                <separator/>
+                <filter string="Domain" name="g_domain" context="{'group_by':'domain'}"/>
+                <filter string="Severity" name="g_sev" context="{'group_by':'severity'}"/>
+                <filter string="Process" name="g_proc" context="{'group_by':'process_id'}"/>
+                <filter string="Status" name="g_state" context="{'group_by':'state'}"/>
+            </search>
+        </field>
+    </record>
+    <record id="view_ims_nonconformity_list" model="ir.ui.view">
+        <field name="name">ims.nonconformity.list</field><field name="model">ims.nonconformity</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="severity == 'critical'" decoration-warning="severity == 'major'">
+                <field name="name"/><field name="title"/><field name="domain"/><field name="nc_type"/><field name="severity"/>
+                <field name="date_detected"/><field name="assigned_to_id"/><field name="due_date"/><field name="total_cost"/><field name="state"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ims_nonconformity_form" model="ir.ui.view">
+        <field name="name">ims.nonconformity.form</field><field name="model">ims.nonconformity</field>
+        <field name="arch" type="xml">
+            <form string="IMS Nonconformity / Incident">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,containment,investigation,disposition,implementation,verification,closed"/>
+                    <button name="action_close" type="object" string="Close Record" class="btn-primary" invisible="state in ('closed','cancelled')"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><label for="title"/><h1><field name="title"/></h1></div>
+                    <group>
+                        <group string="Classification">
+                            <field name="name"/><field name="domain"/><field name="nc_type"/><field name="source"/><field name="severity"/>
+                        </group>
+                        <group string="Responsibility">
+                            <field name="process_id"/><field name="department_id"/><field name="date_detected"/>
+                            <field name="originated_by_id"/><field name="assigned_to_id"/><field name="due_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="1. Nonconformity / Incident">
+                            <field name="description"/>
+                            <group><field name="partner_id"/><field name="reference"/></group>
+                        </page>
+                        <page string="2. Immediate / Containment Action"><field name="immediate_action"/></page>
+                        <page string="3. Investigation &amp; Root Cause">
+                            <field name="investigation"/>
+                            <field name="root_cause_method"/>
+                            <field name="root_cause"/>
+                        </page>
+                        <page string="4. Disposition">
+                            <field name="disposition"/>
+                            <field name="disposition_notes"/>
+                        </page>
+                        <page string="5. Verification &amp; Closeout">
+                            <field name="verification_notes"/><field name="closure_notes"/>
+                        </page>
+                        <page string="CAPA / Risk / Actions">
+                            <field name="capa_ids"/>
+                            <field name="risk_case_ids" widget="many2many_tags"/>
+                            <field name="action_ids"/>
+                        </page>
+                        <page string="Cost of Nonconformity">
+                            <group><field name="material_cost"/><field name="labor_cost"/><field name="external_cost"/><field name="total_cost"/></group>
+                        </page>
+                    </notebook>
+                </sheet><chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="action_ims_nonconformity" model="ir.actions.act_window">
+        <field name="name">Nonconformities &amp; Incidents</field><field name="res_model">ims.nonconformity</field>
+        <field name="view_mode">kanban,list,form</field><field name="search_view_id" ref="view_ims_nonconformity_search"/>
+    </record>
+    <menuitem id="menu_ims_nonconformity" name="Nonconformities / Incidents" parent="menu_ims_improvement" action="action_ims_nonconformity" sequence="10"/>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ims_compliance_search" model="ir.ui.view">
+      <field name="name">ims.compliance.requirement.search</field><field name="model">ims.compliance.requirement</field>
+      <field name="arch" type="xml"><search><field name="name"/><field name="title"/><field name="authority"/><field name="domain"/><field name="compliance_status"/><filter string="By Domain" name="g_domain" context="{'group_by':'domain'}"/></search></field>
+    </record>
+    <record id="view_ims_compliance_list" model="ir.ui.view">
+      <field name="name">ims.compliance.requirement.list</field><field name="model">ims.compliance.requirement</field>
+      <field name="arch" type="xml"><list><field name="name"/><field name="title"/><field name="authority"/><field name="document_number"/><field name="domain"/><field name="responsible_id"/><field name="compliance_status"/><field name="review_date"/><field name="state"/></list></field>
+    </record>
+    <record id="view_ims_compliance_form" model="ir.ui.view">
+      <field name="name">ims.compliance.requirement.form</field><field name="model">ims.compliance.requirement</field>
+      <field name="arch" type="xml"><form><sheet><group><field name="name"/><field name="title"/><field name="authority"/><field name="document_number"/><field name="domain"/><field name="responsible_id"/><field name="compliance_status"/><field name="review_date"/><field name="state"/></group><notebook><page string="Applicability / Obligations"><field name="applicability"/><field name="obligation"/></page><page string="Processes"><field name="process_ids" widget="many2many_tags"/></page><page string="Evidence"><field name="evidence"/></page><page string="Actions"><field name="action_ids" widget="many2many_tags"/></page></notebook></sheet><chatter/></form></field>
+    </record>
+    <record id="action_ims_compliance" model="ir.actions.act_window">
+      <field name="name">Legal &amp; Compliance Register</field><field name="res_model">ims.compliance.requirement</field><field name="view_mode">list,form</field>
+      <field name="search_view_id" ref="view_ims_compliance_search"/>
+    </record>
+    <menuitem id="menu_ims_compliance" name="Legal &amp; Compliance Register" parent="menu_ims_compliance_root" action="action_ims_compliance" sequence="10"/>
+</odoo>
