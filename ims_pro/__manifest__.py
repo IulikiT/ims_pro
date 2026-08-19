@@ -2,7 +2,7 @@
     "name": "IMS Pro",
     "summary": "Integrated Management System for Odoo 19",
     "description": "Commercial Integrated Management System for Quality, Environment, OH&S and Information Security.",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "category": "Operations/IMS",
     "author": "Promotive IT System SRL",
     "maintainer": "Promotive IT System SRL",
@@ -16,6 +16,8 @@
         "data/ims_sequence.xml",
         "data/ims_cron.xml",
 
+        # Dashboard client action must be registered before the root menu references it.
+        "views/ims_dashboard_views.xml",
         "views/ims_root_menu.xml",
         "views/ims_process_views.xml",
         "views/ims_action_views.xml",
@@ -34,7 +36,6 @@
         "views/ims_review_views.xml",
         "views/ims_compliance_views.xml",
         "views/ims_objective_views.xml",
-        "views/ims_dashboard_views.xml",
         "views/ims_visual_views.xml",
 
         "report/ims_document_report.xml"
