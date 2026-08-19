@@ -25,12 +25,12 @@
                             </div>
                             <div class="ims_card_title"><field name="name"/></div>
                             <div class="ims_card_meta">
-                                <span><i class="fa fa-folder-o me-1"/><field name="folder_id"/></span>
-                                <span t-if="record.process_id.raw_value"><i class="fa fa-sitemap me-1"/><field name="process_id"/></span>
+                                <span><i class="fa fa-folder-o me-1" title="Folder"/><field name="folder_id"/></span>
+                                <span t-if="record.process_id.raw_value"><i class="fa fa-sitemap me-1" title="Process"/><field name="process_id"/></span>
                             </div>
                             <div class="ims_card_meta mt-2">
-                                <span><i class="fa fa-calendar-check-o me-1"/>Effective <field name="current_effective_date"/></span>
-                                <span><i class="fa fa-refresh me-1"/>Review <field name="current_review_date"/></span>
+                                <span><i class="fa fa-calendar-check-o me-1" title="Effective Date"/>Effective <field name="current_effective_date"/></span>
+                                <span><i class="fa fa-refresh me-1" title="Review"/>Review <field name="current_review_date"/></span>
                             </div>
                         </div>
                     </t>
@@ -62,12 +62,12 @@
                             </div>
                             <div class="ims_card_title"><field name="name"/></div>
                             <div class="ims_card_meta">
-                                <span><i class="fa fa-folder-o me-1"/><field name="folder_id"/></span>
-                                <span><i class="fa fa-user-o me-1"/><field name="owner_id"/></span>
+                                <span><i class="fa fa-folder-o me-1" title="Folder"/><field name="folder_id"/></span>
+                                <span><i class="fa fa-user-o me-1" title="Responsible"/><field name="owner_id"/></span>
                             </div>
                             <div class="ims_card_meta mt-2">
                                 <span>Rev <field name="current_revision_label"/></span>
-                                <span t-if="record.change_control_required.raw_value"><i class="fa fa-lock me-1"/>Change Control</span>
+                                <span t-if="record.change_control_required.raw_value"><i class="fa fa-lock me-1" title="Change Control"/>Change Control</span>
                             </div>
                         </div>
                     </t>
@@ -96,14 +96,14 @@
                                 <t t-else=""><span class="ims_badge ims_badge_low"><t t-esc="record.residual_level.value || 'LOW'"/></span></t>
                             </div>
                             <div class="ims_card_title"><field name="title"/></div>
-                            <div class="ims_card_meta"><span><i class="fa fa-folder-open-o me-1"/><field name="project_id"/></span></div>
+                            <div class="ims_card_meta"><span><i class="fa fa-folder-open-o me-1" title="Project"/><field name="project_id"/></span></div>
                             <div class="ims_card_meta mt-2">
                                 <span>Initial: <strong><field name="initial_level"/></strong></span>
                                 <span>Residual: <strong><field name="residual_level"/></strong></span>
                             </div>
                             <div class="ims_card_meta mt-2">
-                                <span><i class="fa fa-user-o me-1"/><field name="responsible_id"/></span>
-                                <span><i class="fa fa-calendar-o me-1"/><field name="due_date"/></span>
+                                <span><i class="fa fa-user-o me-1" title="Responsible"/><field name="responsible_id"/></span>
+                                <span><i class="fa fa-calendar-o me-1" title="Date"/><field name="due_date"/></span>
                             </div>
                         </div>
                     </t>
@@ -132,12 +132,12 @@
                             </div>
                             <div class="ims_card_title"><field name="title"/></div>
                             <div class="ims_card_meta">
-                                <span><i class="fa fa-tag me-1"/><field name="domain"/></span>
+                                <span><i class="fa fa-tag me-1" title="Category"/><field name="domain"/></span>
                                 <span><field name="nc_type"/></span>
                             </div>
                             <div class="ims_card_meta mt-2">
-                                <span><i class="fa fa-user-o me-1"/><field name="assigned_to_id"/></span>
-                                <span><i class="fa fa-calendar-o me-1"/><field name="due_date"/></span>
+                                <span><i class="fa fa-user-o me-1" title="Responsible"/><field name="assigned_to_id"/></span>
+                                <span><i class="fa fa-calendar-o me-1" title="Date"/><field name="due_date"/></span>
                             </div>
                         </div>
                     </t>
@@ -164,12 +164,12 @@
                             </div>
                             <div class="ims_card_title"><field name="title"/></div>
                             <div class="ims_card_meta">
-                                <span><i class="fa fa-sitemap me-1"/><field name="process_id"/></span>
-                                <span><i class="fa fa-tag me-1"/><field name="domain"/></span>
+                                <span><i class="fa fa-sitemap me-1" title="Process"/><field name="process_id"/></span>
+                                <span><i class="fa fa-tag me-1" title="Category"/><field name="domain"/></span>
                             </div>
                             <div class="ims_card_meta mt-2">
-                                <span><i class="fa fa-user-o me-1"/><field name="assigned_to_id"/></span>
-                                <span><i class="fa fa-calendar-o me-1"/><field name="due_date"/></span>
+                                <span><i class="fa fa-user-o me-1" title="Responsible"/><field name="assigned_to_id"/></span>
+                                <span><i class="fa fa-calendar-o me-1" title="Date"/><field name="due_date"/></span>
                             </div>
                         </div>
                     </t>
@@ -196,9 +196,9 @@
                             <div class="ims_card_title"><field name="title"/></div>
                             <div class="ims_card_meta">
                                 <span><field name="audit_type"/></span>
-                                <span><i class="fa fa-calendar-o me-1"/><field name="planned_date"/></span>
+                                <span><i class="fa fa-calendar-o me-1" title="Date"/><field name="planned_date"/></span>
                             </div>
-                            <div class="ims_card_meta mt-2"><span><i class="fa fa-user-o me-1"/><field name="lead_auditor_id"/></span></div>
+                            <div class="ims_card_meta mt-2"><span><i class="fa fa-user-o me-1" title="Responsible"/><field name="lead_auditor_id"/></span></div>
                         </div>
                     </t>
                 </templates>
@@ -224,9 +224,9 @@
                             <div class="ims_card_title"><field name="title"/></div>
                             <div class="ims_card_meta">
                                 <span><field name="review_type"/></span>
-                                <span><i class="fa fa-calendar-o me-1"/><field name="review_date"/></span>
+                                <span><i class="fa fa-calendar-o me-1" title="Date"/><field name="review_date"/></span>
                             </div>
-                            <div class="ims_card_meta mt-2"><span><i class="fa fa-user-o me-1"/><field name="coordinator_id"/></span></div>
+                            <div class="ims_card_meta mt-2"><span><i class="fa fa-user-o me-1" title="Responsible"/><field name="coordinator_id"/></span></div>
                         </div>
                     </t>
                 </templates>

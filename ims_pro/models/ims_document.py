@@ -78,7 +78,7 @@ class IMSDocument(models.Model):
     issued_by_department_id = fields.Many2one("hr.department", string="Issued By", tracking=True)
     change_control_required = fields.Boolean(default=False, tracking=True)
     review_interval_months = fields.Integer(default=12)
-    revision_ids = fields.One2many("ims.document.revision", "document_id")
+    revision_ids = fields.One2many("ims.document.revision", "document_id", string="Revision History")
     current_revision_id = fields.Many2one("ims.document.revision", compute="_compute_current_revision", store=True, index=True)
     current_revision_label = fields.Char(related="current_revision_id.revision", string="Revision", store=True)
     current_revision_state = fields.Selection(related="current_revision_id.state", string="Revision Status", store=True)
