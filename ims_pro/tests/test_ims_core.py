@@ -139,3 +139,13 @@ class TestIMSProCore(TransactionCase):
         })
         self.env["ims.notification.service"].run_daily_notifications()
         self.assertTrue(action.activity_ids)
+
+
+class TestIMSProSecurity(TransactionCase):
+    def test_default_security_groups(self):
+        internal = self.env.ref("base.group_user")
+        system = self.env.ref("base.group_system")
+        ims_user = self.env.ref("ims_pro.group_ims_user")
+        ims_admin = self.env.ref("ims_pro.group_ims_admin")
+        self.assertIn(ims_user, internal.implied_ids)
+        self.assertIn(ims_admin, system.implied_ids)

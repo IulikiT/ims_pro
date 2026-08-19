@@ -11,4 +11,11 @@
         <field name="name">IMS Administrator</field>
         <field name="implied_ids" eval="[(4, ref('group_ims_manager'))]"/>
     </record>
+    <!-- IMS Pro access defaults: all internal users get IMS User; system administrators get IMS Administrator. -->
+    <record id="base.group_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('ims_pro.group_ims_user'))]"/>
+    </record>
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('ims_pro.group_ims_admin'))]"/>
+    </record>
 </odoo>

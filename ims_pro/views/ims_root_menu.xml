@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_ims_root" name="IMS Pro" action="action_ims_dashboard_client" sequence="10" groups="ims_pro.group_ims_user"/>
+    <menuitem id="menu_ims_root" name="IMS Pro" action="action_ims_dashboard_client" sequence="10" groups="base.group_user"/>
 <menuitem id="menu_ims_my" name="My IMS" parent="menu_ims_root" sequence="5"/>
     <menuitem id="menu_ims_documents" name="Documents" parent="menu_ims_root" sequence="10"/>
     <menuitem id="menu_ims_risk_root" name="Risk &amp; Opportunities" parent="menu_ims_root" sequence="20"/>

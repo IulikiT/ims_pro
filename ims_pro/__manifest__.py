@@ -2,7 +2,7 @@
     "name": "IMS Pro",
     "summary": "Integrated Management System for Odoo 19",
     "description": "Commercial Integrated Management System for Quality, Environment, OH&S and Information Security.",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "category": "Operations/IMS",
     "author": "Promotive IT System SRL",
     "maintainer": "Promotive IT System SRL",

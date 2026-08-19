@@ -69,7 +69,7 @@ class IMSDashboard(models.TransientModel):
         recent_actions = []
         for rec in self.env["ims.action"].search(
             [("responsible_id", "=", self.env.user.id)],
-            order="is_overdue desc, due_date asc, id desc",
+            order="due_date asc, id desc",
             limit=7,
         ):
             recent_actions.append({
